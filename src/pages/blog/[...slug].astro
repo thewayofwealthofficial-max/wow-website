@@ -1,0 +1,222 @@
+---
+import { getCollection, render } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+import Layout from '../../layouts/Layout.astro';
+import PostCTA from '../../components/PostCTA.astro';
+import RelatedPosts from '../../components/RelatedPosts.astro';
+
+export const getStaticPaths = (async () => {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post, all: posts },
+  }));
+}) satisfies GetStaticPaths;
+
+const { post, all } = Astro.props;
+const { Content } = await render(post);
+
+const dateFmt = new Intl.DateTimeFormat('en-GB', {
+  year: 'numeric', month: 'long', day: 'numeric',
+});
+
+const SITE = 'https://www.wayofwealthstudio.shop';
+const canonical = `${SITE}/blog/${post.id}`;
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.pubDate.toISOString(),
+  dateModified: (post.data.updatedDate ?? post.data.pubDate).toISOString(),
+  author: {
+    '@type': 'Person',
+    name: 'Joel',
+    jobTitle: 'Behavioral Economist & Qualified Financial Planner',
+    url: SITE,
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Way of Wealth',
+    url: SITE,
+  },
+  mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
+  ...(post.data.ogImage ? { image: post.data.ogImage.startsWith('http') ? post.data.ogImage : `${SITE}${post.data.ogImage}` } : {}),
+  articleSection: post.data.category,
+  keywords: post.data.tags.join(', '),
+};
+
+const related = all
+  .filter((p) => p.id !== post.id && p.data.category === post.data.category)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+---
+<Layout
+  title={`${post.data.title} — Way of Wealth`}
+  description={post.data.description}
+  ogImage={post.data.ogImage}
+  canonical={canonical}
+  articleSchema={articleSchema}
+>
+
+<article class="post">
+  <header class="post-header">
+    <div class="post-header-inner">
+      <span class="section-tag">{post.data.category}</span>
+      <h1>{post.data.title}</h1>
+      <p class="post-deck">{post.data.description}</p>
+      <div class="post-byline">
+        <span><em>Joel</em> · MSc Behavioral Economics</span>
+        <span class="dot">·</span>
+        <time datetime={post.data.pubDate.toISOString()}>{dateFmt.format(post.data.pubDate)}</time>
+        {post.data.readingTime && <><span class="dot">·</span><span>{post.data.readingTime}</span></>}
+      </div>
+    </div>
+  </header>
+
+  <div class="post-body">
+    <div class="prose">
+      <Content />
+    </div>
+  </div>
+
+  <PostCTA />
+  <RelatedPosts posts={related} />
+</article>
+
+</Layout>
+
+<style>
+  .post {
+    background: var(--color-bg-white);
+    padding-top: 6rem;
+  }
+
+  .post-header {
+    background: var(--color-cream);
+    padding: 5rem 2rem 4rem;
+    border-bottom: 1px solid var(--color-border-warm);
+  }
+  .post-header-inner {
+    max-width: 740px;
+    margin: 0 auto;
+    text-align: left;
+  }
+  .post-header h1 {
+    font-family: var(--font-heading);
+    font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.005em;
+    color: var(--color-charcoal);
+    margin-bottom: 1.5rem;
+  }
+  .post-header h1 :global(em) { font-style: italic; color: var(--color-gold); font-weight: 400; }
+  .post-deck {
+    font-family: var(--font-body);
+    font-size: 1.2rem;
+    line-height: 1.7;
+    color: var(--color-slate);
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+  .post-byline {
+    font-family: var(--font-ui);
+    font-size: 0.85rem;
+    color: var(--color-slate);
+    letter-spacing: 0.02em;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    align-items: center;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border-warm);
+  }
+  .post-byline em { font-style: normal; color: var(--color-gold); font-weight: 500; }
+  .post-byline .dot { color: var(--color-border-warm); }
+
+  .post-body {
+    padding: 4rem 2rem 0;
+  }
+
+  .prose {
+    max-width: 680px;
+    margin: 0 auto;
+    font-family: var(--font-body);
+    font-size: 1.12rem;
+    line-height: 1.85;
+    color: var(--color-charcoal);
+  }
+  .prose :global(p) { margin-bottom: 1.6rem; }
+  .prose :global(h2) {
+    font-family: var(--font-heading);
+    font-size: clamp(1.6rem, 2.8vw, 2rem);
+    font-weight: 400;
+    line-height: 1.25;
+    color: var(--color-charcoal);
+    margin: 3.5rem 0 1.25rem;
+    letter-spacing: -0.005em;
+  }
+  .prose :global(h2 em) { font-style: italic; color: var(--color-gold); font-weight: 400; }
+  .prose :global(h3) {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    font-weight: 400;
+    color: var(--color-charcoal);
+    margin: 2.5rem 0 1rem;
+  }
+  .prose :global(h3 em) { font-style: italic; color: var(--color-gold); font-weight: 400; }
+  .prose :global(em) { font-style: italic; color: var(--color-charcoal); }
+  .prose :global(strong) { font-weight: 600; color: var(--color-charcoal); }
+  .prose :global(a) {
+    color: var(--color-gold);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(196, 162, 101, 0.4);
+    transition: border-color 0.3s;
+  }
+  .prose :global(a:hover) { border-bottom-color: var(--color-gold); }
+  .prose :global(blockquote) {
+    border-left: 3px solid var(--color-gold);
+    padding: 0.5rem 0 0.5rem 1.5rem;
+    margin: 2rem 0;
+    font-style: italic;
+    color: var(--color-slate);
+  }
+  .prose :global(blockquote p) { margin-bottom: 0.75rem; }
+  .prose :global(blockquote p:last-child) { margin-bottom: 0; }
+  .prose :global(ul), .prose :global(ol) {
+    margin: 1.5rem 0 1.75rem 1.5rem;
+    padding-left: 0.5rem;
+  }
+  .prose :global(li) {
+    margin-bottom: 0.6rem;
+    padding-left: 0.5rem;
+  }
+  .prose :global(li::marker) { color: var(--color-gold); }
+  .prose :global(hr) {
+    border: none;
+    border-top: 1px solid var(--color-border-warm);
+    margin: 3rem auto;
+    max-width: 200px;
+  }
+  .prose :global(code) {
+    font-family: 'SFMono-Regular', Menlo, monospace;
+    font-size: 0.92em;
+    background: var(--color-bg-cool);
+    padding: 0.15em 0.4em;
+    border-radius: 3px;
+  }
+  .prose :global(img) {
+    max-width: 100%;
+    height: auto;
+    margin: 2rem 0;
+    border-radius: 6px;
+  }
+
+  @media (max-width: 700px) {
+    .post-header { padding: 4rem 1.5rem 3rem; }
+    .post-body { padding: 3rem 1.5rem 0; }
+    .prose { font-size: 1.05rem; }
+  }
+</style>

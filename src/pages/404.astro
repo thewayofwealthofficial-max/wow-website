@@ -1,0 +1,52 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="Not found — Way of Wealth" description="The page you were looking for isn't here.">
+  <section class="notfound">
+    <div class="notfound-inner">
+      <span class="section-tag">404</span>
+      <h1>This page <em>isn't here.</em></h1>
+      <p>It might have moved, or never existed. Either way — head back to the blog or the home page.</p>
+      <div class="notfound-actions">
+        <a href="/" class="btn-primary">Home</a>
+        <a href="/blog" class="btn-ghost">Read the blog</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .notfound {
+    min-height: 80vh;
+    background: var(--color-navy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 9rem 2rem 5rem;
+    text-align: center;
+  }
+  .notfound-inner { max-width: 600px; }
+  .notfound :global(.section-tag) { color: var(--color-gold); }
+  .notfound h1 {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 5vw, 3.8rem);
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--color-cream);
+    margin-bottom: 1.5rem;
+  }
+  .notfound h1 em { font-style: italic; color: var(--color-gold); font-weight: 400; }
+  .notfound p {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    line-height: 1.75;
+    color: rgba(245, 240, 232, 0.8);
+    margin-bottom: 2.5rem;
+  }
+  .notfound-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+</style>

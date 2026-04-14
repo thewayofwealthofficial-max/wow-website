@@ -1,0 +1,57 @@
+name: Daily Blog Post
+
+# Runs daily at 05:00 UTC = 06:00 BST (UK summer) / 05:00 GMT (UK winter).
+# Joel wakes up to a fresh post on www.wayofwealthstudio.shop.
+# Manual trigger via the Actions tab is also enabled for testing.
+
+on:
+  schedule:
+    - cron: '0 5 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-blog-post
+  cancel-in-progress: false
+
+jobs:
+  generate-post:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          # Need full token so the push step can trigger Netlify rebuild.
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 1
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Generate post
+        id: generate
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: node scripts/generate-daily-post.mjs
+
+      - name: Commit + push
+        run: |
+          git config user.name "Way of Wealth Bot"
+          git config user.email "thewayofwealth.official@gmail.com"
+          git add src/content/blog/ src/content/reddit-queue.md
+          if git diff --staged --quiet; then
+            echo "No changes to commit (queue may be empty)."
+            exit 0
+          fi
+          QUESTION="${{ steps.generate.outputs.question }}"
+          SLUG="${{ steps.generate.outputs.slug }}"
+          git commit -m "blog: ${QUESTION:-daily post}
+
+Auto-published from reddit-queue.md (slug: ${SLUG})."
+          git push

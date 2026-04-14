@@ -1,0 +1,51 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+  canonical?: string;
+  articleSchema?: Record<string, unknown>;
+}
+
+const SITE = 'https://www.wayofwealthstudio.shop';
+const DEFAULT_OG = `${SITE}/og-default.png`;
+
+const {
+  title,
+  description,
+  ogImage = DEFAULT_OG,
+  canonical,
+  articleSchema,
+} = Astro.props;
+
+const canonicalUrl = canonical ?? new URL(Astro.url.pathname, SITE).toString();
+const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${SITE}${ogImage}`;
+---
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalUrl} />
+
+<!-- Open Graph -->
+<meta property="og:type" content={articleSchema ? 'article' : 'website'} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={ogImageUrl} />
+<meta property="og:site_name" content="Way of Wealth" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImageUrl} />
+
+<!-- Author / publisher -->
+<meta name="author" content="Joel — Way of Wealth" />
+<meta name="theme-color" content="#1C2A3A" />
+
+<!-- RSS discovery -->
+<link rel="alternate" type="application/rss+xml" title="Way of Wealth — Blog" href="/rss.xml" />
+
+{articleSchema && (
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+)}

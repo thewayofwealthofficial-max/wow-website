@@ -1,0 +1,133 @@
+---
+import { LINKS } from '../config/links';
+---
+<aside class="post-cta">
+  <div class="cta-card">
+    <span class="cta-label">Three minutes · Klontz Money Scripts</span>
+    <h3>Take the <em>Money Beliefs Quiz</em></h3>
+    <p>Find out which of the four money scripts you're running — Money Avoidance, Worship, Status, or Vigilance — and what it means for the way you handle money.</p>
+    <a href={LINKS.quiz} target="_blank" rel="noopener" class="btn-primary">Start the Quiz</a>
+  </div>
+
+  <div class="cta-grid">
+    <div class="cta-mini">
+      <span class="cta-label">Free PDF</span>
+      <h4>The Quiet Money Cheat Sheet</h4>
+      <p>The three behavioral frameworks that come up most often in client work.</p>
+      <a href={LINKS.cheatSheet} target="_blank" rel="noopener">Get the Cheat Sheet →</a>
+    </div>
+    <div class="cta-mini">
+      <span class="cta-label">Practical Tools</span>
+      <h4>Worksheets &amp; Planners</h4>
+      <p>Judgement-free tools for people who've already tried the usual apps.</p>
+      <a href={LINKS.etsy} target="_blank" rel="noopener">Browse on Etsy →</a>
+    </div>
+  </div>
+
+  <div class="credential-strip">
+    Written by <em>Joel</em> · MSc Behavioral Economics · Qualified Financial Planner
+  </div>
+</aside>
+
+<style>
+  .post-cta {
+    max-width: 740px;
+    margin: 5rem auto 0;
+    padding: 0 0 4rem;
+  }
+
+  .cta-card {
+    background: var(--color-navy);
+    color: var(--color-cream);
+    padding: 3rem 2.5rem;
+    border-radius: 8px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 3px;
+    background: var(--color-gold);
+  }
+  .cta-label {
+    font-family: var(--font-heading-sc);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    color: var(--color-gold);
+    display: block;
+    margin-bottom: 1rem;
+  }
+  .cta-card h3 {
+    font-family: var(--font-heading);
+    font-size: clamp(1.7rem, 3vw, 2.2rem);
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 1.25rem;
+  }
+  .cta-card h3 em { font-style: italic; color: var(--color-gold); font-weight: 400; }
+  .cta-card p {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.75;
+    color: rgba(245, 240, 232, 0.85);
+    max-width: 460px;
+    margin: 0 auto 2rem;
+  }
+
+  .cta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-top: 1.25rem;
+  }
+  .cta-mini {
+    background: var(--color-bg-white);
+    padding: 1.75rem 1.75rem 1.5rem;
+    border-left: 3px solid var(--color-gold);
+    border-radius: 6px;
+  }
+  .cta-mini .cta-label { color: var(--color-slate); }
+  .cta-mini h4 {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--color-charcoal);
+    margin-bottom: 0.65rem;
+    line-height: 1.3;
+  }
+  .cta-mini p {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--color-slate);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+  .cta-mini a {
+    font-family: var(--font-ui);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--color-gold);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+  .cta-mini a:hover { color: var(--color-gold-hover); }
+
+  .credential-strip {
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-border-warm);
+    font-family: var(--font-heading-sc);
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    color: var(--color-slate);
+    text-align: center;
+  }
+  .credential-strip em { font-style: normal; color: var(--color-gold); }
+
+  @media (max-width: 700px) {
+    .cta-grid { grid-template-columns: 1fr; }
+    .cta-card { padding: 2.25rem 1.5rem; }
+  }
+</style>

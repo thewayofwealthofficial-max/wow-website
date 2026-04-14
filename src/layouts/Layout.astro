@@ -1,0 +1,308 @@
+---
+import SEO from '../components/SEO.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+  canonical?: string;
+  articleSchema?: Record<string, unknown>;
+  bodyClass?: string;
+}
+
+const { title, description, ogImage, canonical, articleSchema, bodyClass } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display+SC:wght@400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <SEO
+    title={title}
+    description={description}
+    ogImage={ogImage}
+    canonical={canonical}
+    articleSchema={articleSchema}
+  />
+</head>
+<body class={bodyClass}>
+
+<nav id="nav">
+  <a href="/" class="nav-logo">Way of <em>Wealth</em></a>
+  <div class="nav-links">
+    <a href="/blog">Blog</a>
+    <a href="/#approach">The Approach</a>
+    <a href="/#whats-here">What's Here</a>
+    <a href="/#about">About</a>
+    <a href="/#start" class="nav-cta">Start Here</a>
+  </div>
+</nav>
+
+<main>
+  <slot />
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">Way of <em>Wealth</em></div>
+      <div class="footer-credential">MSc Behavioral Economics &nbsp;|&nbsp; Qualified Financial Planner</div>
+    </div>
+    <div class="footer-links">
+      <a href="/blog">Blog</a>
+      <a href="/#approach">Approach</a>
+      <a href="/#whats-here">What's Here</a>
+      <a href="/#about">About</a>
+      <a href="mailto:thewayofwealth.official@gmail.com">Contact</a>
+    </div>
+    <div class="footer-copy">© 2026 Way of Wealth &nbsp;·&nbsp; Built on research, not hype.</div>
+  </div>
+</footer>
+
+<script is:inline>
+  // Nav shrink on scroll
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('nav');
+    if (nav) nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Reveal on scroll
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  // Smooth anchor scroll for in-page hashes
+  document.querySelectorAll('a[href^="#"], a[href^="/#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const href = a.getAttribute('href');
+      if (!href) return;
+      const hashIdx = href.indexOf('#');
+      const hash = href.slice(hashIdx);
+      if (location.pathname === '/' || href.startsWith('#')) {
+        const target = document.querySelector(hash);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
+
+<style is:global>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --color-navy: #1C2A3A;
+    --color-navy-deep: #141F2B;
+    --color-cream: #F5F0E8;
+    --color-charcoal: #2D2D2D;
+    --color-slate: #6B7B8D;
+    --color-gold: #C4A265;
+    --color-gold-hover: #D4B275;
+    --color-gold-subtle: #E8D5B0;
+    --color-bg-white: #FAFAF7;
+    --color-bg-cool: #E8ECF0;
+    --color-border-warm: #D4C9B8;
+    --color-border-cool: #C8CED6;
+    --font-heading: 'Playfair Display', Georgia, serif;
+    --font-heading-sc: 'Playfair Display SC', Georgia, serif;
+    --font-body: 'Lora', Georgia, serif;
+    --font-ui: 'Inter', -apple-system, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; font-size: 16px; }
+  body {
+    background: var(--color-bg-white);
+    color: var(--color-charcoal);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
+  }
+
+  a { color: inherit; }
+
+  /* --- NAV --- */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.25rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(28, 42, 58, 0.92);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(196, 162, 101, 0.15);
+    transition: padding 0.3s ease;
+  }
+  nav.scrolled { padding: 0.9rem 3rem; }
+
+  .nav-logo {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    color: var(--color-cream);
+    text-decoration: none;
+  }
+  .nav-logo em {
+    font-style: italic;
+    color: var(--color-gold);
+    font-weight: 400;
+  }
+
+  .nav-links { display: flex; gap: 2.25rem; align-items: center; }
+  .nav-links a {
+    font-family: var(--font-ui);
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+    color: rgba(245, 240, 232, 0.75);
+    text-decoration: none;
+    transition: color 0.3s;
+    font-weight: 400;
+  }
+  .nav-links a:hover { color: var(--color-gold); }
+
+  .nav-cta {
+    padding: 0.65rem 1.5rem !important;
+    border: 1px solid var(--color-gold) !important;
+    color: var(--color-gold) !important;
+    border-radius: 6px;
+    transition: all 0.3s !important;
+  }
+  .nav-cta:hover {
+    background: var(--color-gold) !important;
+    color: var(--color-navy) !important;
+  }
+
+  /* --- BUTTONS (shared) --- */
+  .btn-primary {
+    padding: 1rem 2.25rem;
+    background: var(--color-gold);
+    color: var(--color-navy);
+    font-family: var(--font-ui);
+    font-size: 0.88rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: inline-block;
+  }
+  .btn-primary:hover {
+    background: var(--color-gold-hover);
+    transform: translateY(-1px);
+  }
+
+  .btn-ghost {
+    padding: 1rem 2.25rem;
+    background: transparent;
+    color: var(--color-cream);
+    font-family: var(--font-ui);
+    font-size: 0.88rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    border: 1px solid rgba(245, 240, 232, 0.3);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: inline-block;
+  }
+  .btn-ghost:hover {
+    border-color: var(--color-gold);
+    color: var(--color-gold);
+  }
+
+  .section-tag {
+    font-family: var(--font-heading-sc);
+    font-size: 0.8rem;
+    letter-spacing: 0.18em;
+    color: var(--color-slate);
+    display: block;
+    margin-bottom: 1.5rem;
+  }
+
+  /* --- FOOTER --- */
+  footer {
+    padding: 3rem 2rem 2.5rem;
+    background: var(--color-navy-deep);
+    border-top: 1px solid rgba(196, 162, 101, 0.15);
+    color: rgba(245, 240, 232, 0.65);
+  }
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  .footer-logo {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    color: var(--color-cream);
+  }
+  .footer-logo em { font-style: italic; color: var(--color-gold); }
+  .footer-credential {
+    font-family: var(--font-heading-sc);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    color: rgba(245, 240, 232, 0.5);
+    margin-top: 0.35rem;
+  }
+  .footer-links { display: flex; gap: 1.75rem; flex-wrap: wrap; }
+  .footer-links a {
+    font-family: var(--font-ui);
+    font-size: 0.8rem;
+    color: rgba(245, 240, 232, 0.6);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .footer-links a:hover { color: var(--color-gold); }
+  .footer-copy {
+    font-family: var(--font-ui);
+    font-size: 0.72rem;
+    color: rgba(245, 240, 232, 0.4);
+    width: 100%;
+    text-align: center;
+    padding-top: 2rem;
+    margin-top: 2rem;
+    border-top: 1px solid rgba(245, 240, 232, 0.08);
+  }
+
+  /* --- SCROLL REVEALS --- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* --- RESPONSIVE BASE --- */
+  @media (max-width: 1024px) {
+    nav { padding: 1rem 1.5rem; }
+    nav.scrolled { padding: 0.8rem 1.5rem; }
+  }
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .footer-inner { flex-direction: column; text-align: center; gap: 1.5rem; }
+  }
+</style>

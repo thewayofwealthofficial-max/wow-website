@@ -1,0 +1,218 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const featured = posts[0];
+const rest = posts.slice(1);
+
+const dateFmt = new Intl.DateTimeFormat('en-GB', {
+  year: 'numeric', month: 'long', day: 'numeric',
+});
+
+const title = "Blog — Way of Wealth";
+const description = "Honest, research-based notes on the behavioral side of money. By Joel — MSc Behavioral Economics, Qualified Financial Planner.";
+---
+<Layout title={title} description={description}>
+
+<header class="blog-hero">
+  <div class="blog-hero-inner">
+    <span class="section-tag">The Blog</span>
+    <h1>Notes on the <em>quiet side</em> of money.</h1>
+    <p>Short, honest essays on why smart people get stuck with money — and what behavioral research actually says about getting unstuck.</p>
+  </div>
+</header>
+
+<section class="posts-section">
+  <div class="posts-inner">
+
+    {featured && (
+      <a href={`/blog/${featured.id}`} class="featured-card">
+        <span class="featured-label">Latest</span>
+        <span class="post-cat">{featured.data.category}</span>
+        <h2>{featured.data.title}</h2>
+        <p>{featured.data.description}</p>
+        <div class="post-meta">
+          <time datetime={featured.data.pubDate.toISOString()}>{dateFmt.format(featured.data.pubDate)}</time>
+          {featured.data.readingTime && <span> · {featured.data.readingTime}</span>}
+        </div>
+      </a>
+    )}
+
+    {rest.length > 0 && (
+      <ul class="post-list">
+        {rest.map((post) => (
+          <li>
+            <a href={`/blog/${post.id}`}>
+              <span class="post-cat">{post.data.category}</span>
+              <h3>{post.data.title}</h3>
+              <p>{post.data.description}</p>
+              <div class="post-meta">
+                <time datetime={post.data.pubDate.toISOString()}>{dateFmt.format(post.data.pubDate)}</time>
+                {post.data.readingTime && <span> · {post.data.readingTime}</span>}
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+    )}
+
+    {posts.length === 0 && (
+      <p class="empty">No posts yet. Check back soon.</p>
+    )}
+
+  </div>
+</section>
+
+</Layout>
+
+<style>
+  .blog-hero {
+    background: var(--color-navy);
+    padding: 9rem 2rem 5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .blog-hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 4px;
+    background: var(--color-gold);
+  }
+  .blog-hero-inner { max-width: 760px; margin: 0 auto; position: relative; z-index: 2; }
+  .blog-hero :global(.section-tag) { color: var(--color-gold); }
+  .blog-hero h1 {
+    font-family: var(--font-heading);
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--color-cream);
+    margin-bottom: 1.5rem;
+  }
+  .blog-hero h1 em { font-style: italic; color: var(--color-gold); font-weight: 400; }
+  .blog-hero p {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    line-height: 1.75;
+    color: rgba(245, 240, 232, 0.82);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .posts-section {
+    padding: 6rem 2rem 8rem;
+    background: var(--color-bg-white);
+  }
+  .posts-inner { max-width: 1080px; margin: 0 auto; }
+
+  .featured-card {
+    display: block;
+    background: var(--color-cream);
+    padding: 3rem 3rem 2.75rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--color-gold);
+    text-decoration: none;
+    color: var(--color-charcoal);
+    margin-bottom: 4rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .featured-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(28, 42, 58, 0.08);
+  }
+  .featured-label {
+    font-family: var(--font-heading-sc);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    color: var(--color-gold);
+    display: block;
+    margin-bottom: 0.65rem;
+  }
+  .post-cat {
+    font-family: var(--font-heading-sc);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    color: var(--color-slate);
+    display: block;
+    margin-bottom: 0.85rem;
+  }
+  .featured-card h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(1.7rem, 3vw, 2.4rem);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--color-charcoal);
+    margin-bottom: 1rem;
+  }
+  .featured-card p {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--color-charcoal);
+    margin-bottom: 1.5rem;
+  }
+
+  .post-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  .post-list a {
+    display: block;
+    background: var(--color-bg-white);
+    padding: 2rem 2rem 1.75rem;
+    border: 1px solid var(--color-border-warm);
+    border-left: 3px solid var(--color-gold);
+    border-radius: 6px;
+    text-decoration: none;
+    color: var(--color-charcoal);
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    height: 100%;
+  }
+  .post-list a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(28, 42, 58, 0.06);
+    border-color: var(--color-gold-subtle);
+    border-left-color: var(--color-gold);
+  }
+  .post-list h3 {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    font-weight: 400;
+    line-height: 1.3;
+    color: var(--color-charcoal);
+    margin-bottom: 0.85rem;
+  }
+  .post-list p {
+    font-family: var(--font-body);
+    font-size: 0.98rem;
+    line-height: 1.7;
+    color: var(--color-slate);
+    margin-bottom: 1.25rem;
+  }
+
+  .post-meta {
+    font-family: var(--font-ui);
+    font-size: 0.78rem;
+    color: var(--color-slate);
+    letter-spacing: 0.02em;
+  }
+
+  .empty {
+    text-align: center;
+    font-family: var(--font-body);
+    font-style: italic;
+    color: var(--color-slate);
+    padding: 4rem 0;
+  }
+
+  @media (max-width: 800px) {
+    .post-list { grid-template-columns: 1fr; }
+    .featured-card { padding: 2.25rem 1.75rem; }
+  }
+</style>

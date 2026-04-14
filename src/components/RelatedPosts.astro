@@ -1,0 +1,74 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  posts: CollectionEntry<'blog'>[];
+}
+
+const { posts } = Astro.props;
+---
+{posts.length > 0 && (
+  <section class="related">
+    <h3 class="related-title">Continue reading</h3>
+    <ul class="related-list">
+      {posts.map((post) => (
+        <li>
+          <a href={`/blog/${post.id}`}>
+            <span class="related-cat">{post.data.category}</span>
+            <span class="related-headline">{post.data.title}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+)}
+
+<style>
+  .related {
+    max-width: 740px;
+    margin: 0 auto 5rem;
+    padding: 3rem 0 0;
+    border-top: 1px solid var(--color-border-warm);
+  }
+  .related-title {
+    font-family: var(--font-heading-sc);
+    font-size: 0.85rem;
+    letter-spacing: 0.16em;
+    color: var(--color-slate);
+    margin-bottom: 1.75rem;
+    text-align: center;
+  }
+  .related-list { list-style: none; padding: 0; display: grid; gap: 0.85rem; }
+  .related-list a {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 1.25rem;
+    align-items: baseline;
+    padding: 1rem 1.25rem;
+    text-decoration: none;
+    color: var(--color-charcoal);
+    background: var(--color-bg-white);
+    border-left: 2px solid var(--color-border-warm);
+    border-radius: 4px;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .related-list a:hover {
+    border-left-color: var(--color-gold);
+    transform: translateX(2px);
+  }
+  .related-cat {
+    font-family: var(--font-heading-sc);
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    color: var(--color-slate);
+  }
+  .related-headline {
+    font-family: var(--font-heading);
+    font-size: 1.08rem;
+    font-weight: 400;
+    line-height: 1.35;
+  }
+  @media (max-width: 700px) {
+    .related-list a { grid-template-columns: 1fr; gap: 0.35rem; }
+  }
+</style>

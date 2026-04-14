@@ -1,0 +1,11 @@
+# Normalize line endings: LF in repo, native checkout on each platform.
+* text=auto eol=lf
+
+# Treat these as binary (no normalization)
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.svg text eol=lf
