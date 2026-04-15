@@ -1,0 +1,53 @@
+name: Weekly Queue Topup
+
+# Every Sunday at 18:00 UTC, scrape Reddit and ask Claude to curate
+# 5 new Jess questions into the queue. Keeps the daily post pipeline
+# from ever running dry.
+
+on:
+  schedule:
+    - cron: '0 18 * * 0'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: weekly-queue-topup
+  cancel-in-progress: false
+
+jobs:
+  topup-queue:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 1
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Topup queue
+        id: topup
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: node scripts/topup-reddit-queue.mjs
+
+      - name: Commit + push
+        run: |
+          git config user.name "Way of Wealth Bot"
+          git config user.email "thewayofwealth.official@gmail.com"
+          git add src/content/reddit-queue.md
+          if git diff --staged --quiet; then
+            echo "No queue changes."
+            exit 0
+          fi
+          COUNT="${{ steps.topup.outputs.count }}"
+          git commit -m "queue: weekly topup (${COUNT:-?} new Jess questions)" -m "Harvested from r/UKPersonalFinance, r/MoneyDiariesACTIVE, r/povertyfinance, r/personalfinance, r/ADHD. Curated by Claude."
+          git push

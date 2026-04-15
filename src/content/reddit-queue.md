@@ -32,6 +32,11 @@ This is the keyword-mining queue. Each entry is a Jess question harvested from R
 | 13 | 🔵 | Why do I feel poor even though I earn well? | Hedonic treadmill, lifestyle creep, reference point bias | Behavioral basics | All segments |
 | 14 | 🔵 | Is it normal to cry over money? | Money shame, financial trauma, Window of Tolerance | Anxiety & avoidance | All segments |
 | 15 | 🔵 | Why do I keep buying things that "future me" will deal with? | Present bias, hyperbolic discounting, temporal self-discontinuity | Spending & shame | ADHD/Neurodivergent |
+| 16 | 🔵 | Why can't I keep a job with ADHD? | executive function debt, present bias | ADHD & money | ADHD/Neurodivergent |
+| 17 | 🔵 | Why do I have £10k saved but still £10k in debt? | mental accounting, loss aversion | Anxiety & avoidance | Anxious Avoider |
+| 18 | 🔵 | Can I rebuild my career after burnout at 40? | sunk cost fallacy, planning fallacy | ADHD & money | ADHD/Neurodivergent, Self-Employed Stresser |
+| 19 | 🔵 | Why do I feel like a failure at 25 with money? | social comparison, money scripts | Anxiety & avoidance | Anxious Avoider |
+| 20 | 🔵 | Should I say no when family asks me for money I can't afford? | money scripts, loss aversion | Spending & shame | All segments |
 
 ---
 
