@@ -19,7 +19,7 @@ This is the keyword-mining queue. Each entry is a Jess question harvested from R
 |---|--------|---------------------------|--------------------|----------|-------------|
 | 1 | ✅ | Why am I scared to check my bank account? | Ostrich effect, anticipated regret | Anxiety & avoidance | Anxious Avoider |
 | 2 | ✅ | Why do I overspend right after payday? | Mental accounting, peak-end effect | Spending & shame | Anxious Avoider |
-| 3 | 🔵 | I keep starting budgets and giving up — what's wrong with me? | Status quo bias, planning fallacy, identity-based change | Budgeting that sticks | All segments |
+| 3 | ✅ | I keep starting budgets and giving up — what's wrong with me? | Status quo bias, planning fallacy, identity-based change | Budgeting that sticks | All segments |
 | 4 | 🔵 | Why do I impulse buy when I'm stressed? | Emotional regulation via consumption, hot/cold empathy gap | Spending & shame | Anxious Avoider, ADHD |
 | 5 | 🔵 | How do I budget when my income is different every month? | Envelope budgeting redesigned for irregular income, base rate buffering | Self-employed | Self-Employed Stresser |
 | 6 | 🔵 | Why does my partner spend differently to me and how do we not fight about it? | Loss aversion asymmetry, money scripts (Klontz) | Behavioral basics | All segments |
