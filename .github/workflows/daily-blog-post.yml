@@ -51,7 +51,5 @@ jobs:
           fi
           QUESTION="${{ steps.generate.outputs.question }}"
           SLUG="${{ steps.generate.outputs.slug }}"
-          git commit -m "blog: ${QUESTION:-daily post}
-
-Auto-published from reddit-queue.md (slug: ${SLUG})."
+          git commit -m "blog: ${QUESTION:-daily post}" -m "Auto-published from reddit-queue.md (slug: ${SLUG})."
           git push
