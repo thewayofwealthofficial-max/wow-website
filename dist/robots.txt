@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# AI training crawlers — explicitly allowed (we want our content cited)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://www.wayofwealthstudio.shop/sitemap-index.xml
