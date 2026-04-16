@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <radialGradient id="vignette" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#C4A265" stop-opacity="0.08"/>
+      <stop offset="65%" stop-color="#C4A265" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#1C2A3A"/>
+  <rect width="1200" height="630" fill="url(#vignette)"/>
+
+  <!-- Top gold accent strip -->
+  <rect x="0" y="0" width="1200" height="4" fill="#C4A265"/>
+
+  <!-- Top credential line -->
+  <text x="600" y="170"
+        text-anchor="middle"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-size="20"
+        font-variant="small-caps"
+        letter-spacing="6"
+        fill="#C4A265">
+    MSc Behavioral Economics  ·  Qualified Financial Planner
+  </text>
+
+  <!-- Wordmark: "Way of Wealth" -->
+  <text x="600" y="330"
+        text-anchor="middle"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-size="110"
+        font-weight="400"
+        letter-spacing="-1"
+        fill="#F5F0E8">
+    Way of <tspan font-style="italic" fill="#C4A265">Wealth</tspan>
+  </text>
+
+  <!-- Divider line -->
+  <line x1="500" y1="395" x2="700" y2="395"
+        stroke="#C4A265" stroke-width="1" opacity="0.7"/>
+
+  <!-- Tagline -->
+  <text x="600" y="460"
+        text-anchor="middle"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-size="32"
+        font-style="italic"
+        fill="#F5F0E8"
+        opacity="0.85">
+    The behavioral side of money.
+  </text>
+
+  <!-- Footer URL -->
+  <text x="600" y="555"
+        text-anchor="middle"
+        font-family="-apple-system, 'Segoe UI', sans-serif"
+        font-size="16"
+        letter-spacing="3"
+        fill="#F5F0E8"
+        opacity="0.45">
+    WAYOFWEALTHSTUDIO.SHOP
+  </text>
+</svg>

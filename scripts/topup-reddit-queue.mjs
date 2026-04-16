@@ -97,7 +97,7 @@ function maxQueueNum(rows) {
 
 const CURATION_SYSTEM = `You are curating Reddit posts for Joel's Way of Wealth blog. The blog targets Jess — 28-35, anxious avoider, has tried budgets, shame spiral, searches in her own emotional language.
 
-You will receive a batch of Reddit post titles from personal-finance-adjacent subreddits. Your job: pick the 5 best ones that:
+You will receive a batch of Reddit post titles from personal-finance-adjacent subreddits. Your job: pick the 10 best ones that:
 
 1. Read as a question Jess herself might type into Google (emotional, functional, first-person)
 2. Map cleanly to a SINGLE behavioral economics concept (ostrich effect, mental accounting, present bias, loss aversion, money scripts/Klontz, planning fallacy, sunk cost, hedonic treadmill, hyperbolic discounting, etc.) — never blend three
@@ -109,7 +109,7 @@ CATEGORIES (pick one per question): "Spending & shame", "Anxiety & avoidance", "
 
 ICP SEGMENTS (pick one or a combination): "Anxious Avoider", "ADHD/Neurodivergent", "Self-Employed Stresser", "All segments"
 
-If you can't find 5 good ones, return fewer — quality over quota.
+If you can't find 10 good ones, return fewer — quality over quota. The blog publishes 7 per week, so 10 keeps the queue growing.
 
 OUTPUT — RESPOND WITH JSON ONLY, no preamble:
 {
@@ -190,7 +190,7 @@ async function main() {
   const jessPosts = allPosts
     .filter(looksLikeJessQuestion)
     .sort((a, b) => b.num_comments - a.num_comments)
-    .slice(0, 40); // Cap before sending to Claude
+    .slice(0, 60); // Cap before sending to Claude — wider net so we can pick 10 strong ones
   console.log(`Filtered to Jess-shaped questions: ${jessPosts.length}`);
 
   if (jessPosts.length === 0) {
