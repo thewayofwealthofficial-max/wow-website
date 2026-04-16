@@ -17,7 +17,7 @@ if (!ANTHROPIC_API_KEY) {
   process.exit(1);
 }
 
-const MODEL = process.env.CLAUDE_MODEL ?? 'claude-sonnet-4-5';
+const MODEL = process.env.CLAUDE_MODEL ?? 'claude-sonnet-4-6';
 
 const SUBREDDITS = [
   'UKPersonalFinance',
