@@ -20,7 +20,7 @@ if (!ANTHROPIC_API_KEY) {
   process.exit(1);
 }
 
-const MODEL = process.env.CLAUDE_MODEL ?? 'claude-opus-4-7';
+const MODEL = process.env.CLAUDE_MODEL ?? 'claude-sonnet-4-6';
 
 // ───────────────────────────────────────────────────────────────
 // Queue parsing
