@@ -52,6 +52,29 @@ jobs:
           git commit -m "queue: weekly topup (${COUNT:-?} new Jess questions)" -m "Harvested from r/UKPersonalFinance, r/MoneyDiariesACTIVE, r/povertyfinance, r/personalfinance, r/ADHD. Curated by Claude."
           git push
 
+      - name: Notify Telegram on success
+        if: success()
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          COUNT="${{ steps.topup.outputs.count }}"
+          QUEUED=$(grep -c "^| .* | 🔵 |" src/content/reddit-queue.md || echo "?")
+          node scripts/telegram-notify.mjs --emoji "🔍" --title "Weekly queue topup" --body "+${COUNT:-0} new Jess questions added.
+
+Queue now: $QUEUED waiting."
+
+      - name: Notify Telegram on failure
+        if: failure()
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          RUN_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          node scripts/telegram-notify.mjs --emoji "❌" --title "Weekly queue topup FAILED" --body "Queue was not replenished this week. Daily posts continue until queue empties. Check logs:
+
+$RUN_URL"
+
       - name: Open issue on failure
         if: failure()
         uses: actions/github-script@v7
