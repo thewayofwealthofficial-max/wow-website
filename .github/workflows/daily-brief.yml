@@ -1,0 +1,42 @@
+name: Daily Morning Brief
+
+# Runs daily at 07:00 UTC = 08:00 BST (UK summer) / 07:00 GMT (UK winter).
+# Pulls quiz, MailerLite, blog queue data — sends Telegram brief to Joel via Fred.
+# Manual trigger via Actions tab also enabled for testing.
+
+on:
+  schedule:
+    - cron: '0 7 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: daily-brief
+  cancel-in-progress: false
+
+jobs:
+  send-brief:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Send brief
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          AIRTABLE_TOKEN: ${{ secrets.AIRTABLE_TOKEN }}
+          AIRTABLE_BASE_ID: ${{ secrets.AIRTABLE_BASE_ID }}
+          AIRTABLE_QUIZ_TABLE_ID: ${{ secrets.AIRTABLE_QUIZ_TABLE_ID }}
+          MAILERLITE_API_KEY: ${{ secrets.MAILERLITE_API_KEY }}
+        run: node scripts/daily-brief.mjs

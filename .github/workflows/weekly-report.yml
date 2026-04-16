@@ -1,0 +1,41 @@
+name: Weekly Monday Report
+
+# Runs Monday 07:30 UTC (30 min after daily brief to avoid overlap).
+# Deeper analysis of the week's performance, sends via Telegram to Joel.
+
+on:
+  schedule:
+    - cron: '30 7 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: weekly-report
+  cancel-in-progress: false
+
+jobs:
+  send-report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Send weekly report
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          AIRTABLE_TOKEN: ${{ secrets.AIRTABLE_TOKEN }}
+          AIRTABLE_BASE_ID: ${{ secrets.AIRTABLE_BASE_ID }}
+          AIRTABLE_QUIZ_TABLE_ID: ${{ secrets.AIRTABLE_QUIZ_TABLE_ID }}
+          MAILERLITE_API_KEY: ${{ secrets.MAILERLITE_API_KEY }}
+        run: node scripts/weekly-report.mjs
