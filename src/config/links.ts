@@ -4,4 +4,6 @@ export const LINKS = {
   etsy: 'https://www.etsy.com/shop/WayofWealthStudio',
   cheatSheet: 'https://preview.mailerlite.io/forms/1977493/184455001091867806/share',
   contactEmail: 'mailto:thewayofwealth.official@gmail.com',
+  coaching: '/coaching',
+  portalApplyApi: 'https://portal.thewayofwealth.shop/api/leads/submit',
 } as const;
