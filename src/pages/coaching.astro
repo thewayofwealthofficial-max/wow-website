@@ -22,6 +22,49 @@ const description = "A 1:1 coaching programme for people who've tried budgets, a
   </div>
 </section>
 
+<!-- CREDENTIALS STRIP -->
+<section class="credstrip">
+  <div class="credstrip-inner">
+    <div class="cred-item">
+      <div class="cred-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M12 2L2 7v10l10 5 10-5V7L12 2z" />
+          <path d="M2 7l10 5 10-5" />
+          <path d="M12 12v10" />
+        </svg>
+      </div>
+      <div>
+        <div class="cred-label">MSc Behavioral Economics</div>
+        <div class="cred-sub">Postgraduate degree · UK</div>
+      </div>
+    </div>
+    <div class="cred-item">
+      <div class="cred-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M9 12l2 2 4-4" />
+          <circle cx="12" cy="12" r="10" />
+        </svg>
+      </div>
+      <div>
+        <div class="cred-label">Qualified Financial Planner</div>
+        <div class="cred-sub">Level 4 · UK-regulated</div>
+      </div>
+    </div>
+    <div class="cred-item">
+      <div class="cred-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M4 19h16" />
+          <path d="M6 15l4-8 4 4 4-6" />
+        </svg>
+      </div>
+      <div>
+        <div class="cred-label">Evidence-based method</div>
+        <div class="cred-sub">Klontz Money Scripts · Behavioural finance</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- THE PROBLEM -->
 <section class="problem">
   <div class="problem-inner reveal">
@@ -78,6 +121,42 @@ const description = "A 1:1 coaching programme for people who've tried budgets, a
       <span class="section-tag">The Programme</span>
       <h2>Four phases.<br />Twelve weeks.<br /><em>One coherent story.</em></h2>
       <p class="programme-intro">The programme moves in a deliberate order — safety before opportunity, understanding before action. Nothing is rushed. Each phase builds on what came before.</p>
+    </div>
+
+    <!-- Phase timeline diagram -->
+    <div class="timeline reveal" aria-label="12-week programme timeline">
+      <div class="timeline-track"></div>
+      <div class="timeline-fill"></div>
+      <div class="timeline-points">
+        <div class="tl-point">
+          <div class="tl-circle"><span>1</span></div>
+          <div class="tl-label">
+            <span class="tl-weeks">Weeks 1–3</span>
+            <span class="tl-name">Discover</span>
+          </div>
+        </div>
+        <div class="tl-point">
+          <div class="tl-circle"><span>2</span></div>
+          <div class="tl-label">
+            <span class="tl-weeks">Weeks 4–5</span>
+            <span class="tl-name">Understand</span>
+          </div>
+        </div>
+        <div class="tl-point">
+          <div class="tl-circle"><span>3</span></div>
+          <div class="tl-label">
+            <span class="tl-weeks">Weeks 6–8</span>
+            <span class="tl-name">Rewrite</span>
+          </div>
+        </div>
+        <div class="tl-point">
+          <div class="tl-circle"><span>4</span></div>
+          <div class="tl-label">
+            <span class="tl-weeks">Weeks 9–12</span>
+            <span class="tl-name">Build</span>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="phases">
@@ -592,6 +671,52 @@ const description = "A 1:1 coaching programme for people who've tried budgets, a
     border-radius: 4px;
   }
 
+  /* --- CREDENTIALS STRIP --- */
+  .credstrip {
+    padding: 2.5rem 2rem;
+    background: var(--color-navy-deep);
+    border-bottom: 1px solid rgba(196, 162, 101, 0.2);
+  }
+  .credstrip-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    align-items: center;
+  }
+  .cred-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem 0;
+  }
+  .cred-icon {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 6px;
+    background: rgba(196, 162, 101, 0.12);
+    border: 1px solid rgba(196, 162, 101, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-gold);
+  }
+  .cred-label {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    color: var(--color-cream);
+    line-height: 1.3;
+  }
+  .cred-sub {
+    font-family: var(--font-heading-sc);
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    color: rgba(245, 240, 232, 0.5);
+    margin-top: 0.2rem;
+  }
+
   /* --- PROBLEM --- */
   .problem { padding: 7rem 2rem; background: var(--color-cream); text-align: center; }
   .problem-inner { max-width: 780px; margin: 0 auto; }
@@ -698,6 +823,84 @@ const description = "A 1:1 coaching programme for people who've tried budgets, a
   }
   .section-head { text-align: center; margin-bottom: 2rem; }
   .section-head .programme-intro { margin-left: auto; margin-right: auto; }
+
+  /* --- TIMELINE DIAGRAM --- */
+  .timeline {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto 5rem;
+    padding: 2rem 0 0;
+  }
+  .timeline-track {
+    position: absolute;
+    top: 2.8rem;
+    left: 8%;
+    right: 8%;
+    height: 2px;
+    background: rgba(196, 162, 101, 0.25);
+  }
+  .timeline-fill {
+    position: absolute;
+    top: 2.8rem;
+    left: 8%;
+    width: 0;
+    height: 2px;
+    background: var(--color-gold);
+    transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .timeline.visible .timeline-fill { width: 84%; }
+
+  .timeline-points {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    position: relative;
+    z-index: 2;
+  }
+  .tl-point {
+    text-align: center;
+  }
+  .tl-circle {
+    width: 3.2rem;
+    height: 3.2rem;
+    margin: 0 auto;
+    background: var(--color-navy);
+    border: 2px solid var(--color-gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    color: var(--color-gold);
+    position: relative;
+    transition: all 0.3s;
+  }
+  .tl-circle::before {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 1px solid rgba(196, 162, 101, 0.25);
+  }
+  .tl-label {
+    margin-top: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .tl-weeks {
+    font-family: var(--font-heading-sc);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    color: rgba(245, 240, 232, 0.55);
+    text-transform: uppercase;
+  }
+  .tl-name {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-style: italic;
+    color: var(--color-gold-subtle);
+  }
 
   .phases { display: grid; gap: 2.5rem; }
   .phase {
@@ -1241,6 +1444,7 @@ const description = "A 1:1 coaching programme for people who've tried budgets, a
     .notfor-grid { grid-template-columns: 1fr; }
     .about-grid { grid-template-columns: 1fr; gap: 3rem; }
     .about-portrait { max-width: 380px; margin: 0 auto; }
+    .credstrip-inner { grid-template-columns: 1fr; gap: 1rem; max-width: 420px; }
   }
   @media (max-width: 768px) {
     .hero { padding: 8rem 1.5rem 4rem; }
@@ -1254,5 +1458,24 @@ const description = "A 1:1 coaching programme for people who've tried budgets, a
     .hero-actions :global(.btn-ghost) { width: 100%; text-align: center; }
     .phase { padding: 1.75rem; }
     .phase h3 { font-size: 1.6rem; }
+    /* Timeline: stack vertically on mobile, hide horizontal track */
+    .timeline-track, .timeline-fill { display: none; }
+    .timeline-points {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    .tl-point {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1rem;
+      align-items: center;
+      text-align: left;
+      padding: 1rem;
+      background: rgba(245, 240, 232, 0.03);
+      border-left: 2px solid var(--color-gold);
+      border-radius: 0 4px 4px 0;
+    }
+    .tl-circle { margin: 0; }
+    .tl-label { margin-top: 0; }
   }
 </style>
