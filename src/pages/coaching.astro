@@ -323,8 +323,18 @@ const description = "A 1:1 coaching programme for people who've tried budgets, a
   <div class="apply-inner">
     <div class="section-head reveal">
       <span class="section-tag">Apply</span>
-      <h2>Short form,<br /><em>honest answers.</em></h2>
-      <p class="apply-intro">I read every application myself. If it's a fit, I'll send you a link to book a 30-minute discovery call within two working days. No bots, no funnels — just me, a thoughtful reply, and a calendar link if we're a match.</p>
+      <h2>Short form,<br /><em>then book the call.</em></h2>
+      <p class="apply-intro">Two short steps. Tell me where you are first, then pick a time for a 20-minute discovery call — same page, no email tag. I'll have your application in front of me when we speak.</p>
+    </div>
+
+    <!-- Step 2: Calendly (shown after successful submit) -->
+    <div id="calendly-step" class="calendly-step" style="display:none;">
+      <div class="calendly-confirm reveal visible">
+        <p class="calendly-tick">✓</p>
+        <h3>Got it. Now let's book the call.</h3>
+        <p>Pick a time below — you'll get a calendar invite with the Zoom link straight away. I'll have your application ready when we meet.</p>
+      </div>
+      <div id="calendly-embed" class="calendly-inline-widget" style="min-width:320px;height:720px;"></div>
     </div>
 
     <form id="apply-form" class="apply-form reveal">
@@ -398,10 +408,43 @@ const description = "A 1:1 coaching programme for people who've tried budgets, a
 </Layout>
 
 <script is:inline define:vars={{ apiUrl: LINKS.portalApplyApi }}>
+  const CALENDLY_URL = 'https://calendly.com/thewayofwealth-official/20min';
+
   (function () {
     const form = document.getElementById('apply-form');
     const status = document.getElementById('form-status');
-    if (!form || !status) return;
+    const calendlyStep = document.getElementById('calendly-step');
+    const calendlyEmbed = document.getElementById('calendly-embed');
+    if (!form || !status || !calendlyStep || !calendlyEmbed) return;
+
+    // Lazy-load Calendly widget script+css on demand
+    function loadCalendly() {
+      if (!document.querySelector('link[href*="calendly.com/assets/external/widget.css"]')) {
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = 'https://assets.calendly.com/assets/external/widget.css';
+        document.head.appendChild(link);
+      }
+      if (!document.querySelector('script[src*="calendly.com/assets/external/widget.js"]')) {
+        const s = document.createElement('script');
+        s.src = 'https://assets.calendly.com/assets/external/widget.js';
+        s.async = true;
+        document.body.appendChild(s);
+      }
+    }
+
+    function showCalendly(name, email) {
+      const params = new URLSearchParams();
+      if (name) params.set('name', name);
+      if (email) params.set('email', email);
+      const urlWithPrefill = params.toString() ? `${CALENDLY_URL}?${params.toString()}` : CALENDLY_URL;
+      calendlyEmbed.setAttribute('data-url', urlWithPrefill);
+      form.style.display = 'none';
+      calendlyStep.style.display = 'block';
+      loadCalendly();
+      // Smooth scroll to the booking area
+      setTimeout(() => calendlyStep.scrollIntoView({ behavior: 'smooth', block: 'start' }), 150);
+    }
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -409,9 +452,11 @@ const description = "A 1:1 coaching programme for people who've tried budgets, a
       status.textContent = 'Sending...';
 
       const formData = new FormData(form);
+      const name = formData.get('name');
+      const email = formData.get('email');
       const payload = {
-        name: formData.get('name'),
-        email: formData.get('email'),
+        name,
+        email,
         phone: formData.get('phone') || null,
         source: formData.get('source') || null,
         challenge: formData.get('challenge') || null,
@@ -432,9 +477,10 @@ const description = "A 1:1 coaching programme for people who've tried budgets, a
           status.textContent = data.error || 'Something went wrong. Please try again, or email joel@thewayofwealth.shop directly.';
           return;
         }
-        status.className = 'form-status success';
-        status.textContent = "Got it. I'll personally read your application and reply within two working days. Check your inbox.";
-        form.reset();
+        // Success — reveal Calendly embed with name/email prefilled
+        status.className = 'form-status';
+        status.textContent = '';
+        showCalendly(name, email);
       } catch {
         status.className = 'form-status error';
         status.textContent = 'Could not submit. Please email joel@thewayofwealth.shop and I will reply directly.';
@@ -1047,6 +1093,47 @@ const description = "A 1:1 coaching programme for people who've tried budgets, a
     position: absolute;
     left: -9999px; top: -9999px;
     width: 1px; height: 1px;
+    overflow: hidden;
+  }
+
+  /* --- CALENDLY STEP --- */
+  .calendly-step {
+    background: rgba(245, 240, 232, 0.04);
+    padding: 2.5rem;
+    border-radius: 10px;
+    border: 1px solid rgba(196, 162, 101, 0.25);
+  }
+  .calendly-confirm {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(196, 162, 101, 0.15);
+  }
+  .calendly-tick {
+    font-size: 2.4rem;
+    color: var(--color-gold);
+    margin-bottom: 0.5rem;
+    line-height: 1;
+  }
+  .calendly-confirm h3 {
+    font-family: var(--font-heading);
+    font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+    font-weight: 400;
+    color: var(--color-cream);
+    line-height: 1.3;
+    margin-bottom: 0.8rem;
+  }
+  .calendly-confirm p {
+    font-family: var(--font-body);
+    font-size: 0.98rem;
+    color: rgba(245, 240, 232, 0.75);
+    line-height: 1.75;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+  .calendly-inline-widget {
+    background: var(--color-bg-white);
+    border-radius: 8px;
     overflow: hidden;
   }
 
