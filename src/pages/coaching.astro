@@ -267,6 +267,32 @@ const description = "A 1:1 coaching programme for people who've tried budgets, a
   </div>
 </section>
 
+<!-- INSIDE THE PORTAL (screenshots) -->
+<section class="portal-preview">
+  <div class="portal-preview-inner">
+    <div class="section-head reveal">
+      <span class="section-tag">Inside the Portal</span>
+      <h2>A real product,<br /><em>not a folder of PDFs.</em></h2>
+      <p class="portal-preview-intro">I built the portal specifically for this method. Every worksheet is interactive, every deliverable is markdown-styled, every session summary is searchable. Once you're in, everything lives in one place.</p>
+    </div>
+
+    <div class="portal-shots reveal">
+      <figure class="shot">
+        <img src="/images/portal-dashboard.jpg" alt="Coach dashboard showing active clients, phase, and engagement" loading="lazy" />
+        <figcaption>Coach dashboard — one glance, every client</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="/images/portal-worksheet.jpg" alt="Interactive worksheet mid-fill — WoW Money Beliefs Inventory" loading="lazy" />
+        <figcaption>Interactive worksheets — never a PDF you lose</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="/images/portal-deliverable.jpg" alt="Deliverable editor — Behavioural Pattern Report being drafted" loading="lazy" />
+        <figcaption>Personalised deliverables — written for you</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
 <!-- PILLARS (reuse from homepage style) -->
 <section class="pillars-section" id="approach">
   <div class="pillars-inner">
@@ -320,44 +346,84 @@ const description = "A 1:1 coaching programme for people who've tried budgets, a
     <div class="section-head reveal">
       <span class="section-tag">Investment</span>
       <h2>Founding cohort pricing.<br /><em>First 10 paying clients.</em></h2>
-      <p class="pricing-intro">I'm running this cohort at a lower price while I build out testimonials and case studies. The price rises to £840 for the next 10 clients, then £1,000+ after that.</p>
+      <div class="price-anchor">
+        <span class="anchor-item anchor-was"><s>£1,000</s><span>Standard price</span></span>
+        <span class="anchor-arrow" aria-hidden="true">→</span>
+        <span class="anchor-item anchor-is"><strong>£600</strong><span>Founding cohort · You save £400</span></span>
+      </div>
+      <p class="pricing-intro">This is the founding price. It rises to £840 for the next 10 clients, then £1,000+ after that. Lock in £600 now and it's yours for this programme and any future version you join.</p>
     </div>
 
     <div class="plans reveal">
       <div class="plan">
         <span class="plan-tag">Pay in Full</span>
         <div class="plan-price"><span class="currency">£</span>600</div>
-        <p class="plan-note">One-time payment</p>
+        <p class="plan-perhour">That's £50 per 60-minute session</p>
+        <p class="plan-note">One payment, done — no ongoing anything</p>
         <ul class="plan-perks">
-          <li>Best value — no premium</li>
-          <li>One payment, done</li>
-          <li>Full programme access</li>
+          <li>Best value — same total, one payment</li>
+          <li>Stripe secure checkout</li>
+          <li>Immediate programme access</li>
         </ul>
       </div>
       <div class="plan plan-featured">
         <span class="plan-tag">Most Popular</span>
-        <div class="plan-price"><span class="currency">£</span>300<span class="plan-period">× 2</span></div>
-        <p class="plan-note">2 monthly payments · £600 total</p>
+        <div class="plan-price"><span class="currency">£</span>300<span class="plan-period">/month</span></div>
+        <p class="plan-perhour">£600 total · £50 per session</p>
+        <p class="plan-note">Two monthly payments · no premium</p>
         <ul class="plan-perks">
-          <li>No premium — same total as pay in full</li>
+          <li>Same total as pay in full</li>
           <li>First payment starts access</li>
-          <li>Second payment 30 days later</li>
+          <li>Second payment auto-charges in 30 days</li>
         </ul>
       </div>
       <div class="plan">
-        <span class="plan-tag">Flexibility</span>
-        <div class="plan-price"><span class="currency">£</span>220<span class="plan-period">× 3</span></div>
-        <p class="plan-note">3 monthly payments · £660 total</p>
+        <span class="plan-tag">Most Flexibility</span>
+        <div class="plan-price"><span class="currency">£</span>220<span class="plan-period">/month</span></div>
+        <p class="plan-perhour">£660 total · £55 per session</p>
+        <p class="plan-note">Three monthly payments · £60 plan fee</p>
         <ul class="plan-perks">
-          <li>Small plan fee (£60) for flexibility</li>
-          <li>3 equal monthly instalments</li>
-          <li>First payment starts access</li>
+          <li>Lowest monthly commitment</li>
+          <li>Three equal instalments</li>
+          <li>Best for uneven monthly cash flow</li>
         </ul>
       </div>
     </div>
 
+    <!-- Value stack -->
+    <div class="value-stack reveal">
+      <h3>What you actually get for <em>£600</em></h3>
+      <div class="value-grid">
+        <div class="value-row"><span class="value-what">Twelve 60-minute 1:1 coaching sessions</span><span class="value-worth">Value: £1,440</span></div>
+        <div class="value-row"><span class="value-what">Four personalised deliverables (Money Story Profile · Pattern Report · Rewrite Document · Behavioural Financial Plan)</span><span class="value-worth">Value: £800</span></div>
+        <div class="value-row"><span class="value-what">Private coaching portal · mobile app · push notifications</span><span class="value-worth">Value: £120</span></div>
+        <div class="value-row"><span class="value-what">Eleven interactive worksheets built specifically for the method</span><span class="value-worth">Value: £200</span></div>
+        <div class="value-row"><span class="value-what">Financial Literacy Library (eight modules, yours forever)</span><span class="value-worth">Value: £150</span></div>
+        <div class="value-row"><span class="value-what">Direct messaging between sessions</span><span class="value-worth">Value: £90</span></div>
+        <div class="value-row value-total"><span class="value-what">Total real value</span><span class="value-worth">£2,800</span></div>
+        <div class="value-row value-price"><span class="value-what">Your founding cohort price</span><span class="value-worth"><strong>£600</strong></span></div>
+      </div>
+    </div>
+
+    <!-- GUARANTEE -->
+    <div class="guarantee reveal">
+      <div class="guarantee-badge" aria-hidden="true">
+        <svg viewBox="0 0 40 40" width="46" height="46" fill="none" stroke="currentColor" stroke-width="1.4">
+          <path d="M20 4 L33 10 V20 C33 28 27 34 20 36 C13 34 7 28 7 20 V10 Z" />
+          <path d="M14 20 L18 24 L27 15" stroke-width="2" />
+        </svg>
+      </div>
+      <div class="guarantee-body">
+        <span class="guarantee-tag">The Three-Session Promise</span>
+        <h3>Sit with me for three sessions.<br /><em>If it's not changing how you see money, I refund everything.</em></h3>
+        <p>Most coaches give you a 48-hour cooling-off window and call it a guarantee. That's not a guarantee — that's a returns policy. I want you to <em>actually do the work</em> before you decide.</p>
+        <p>Here's the deal. Show up to Sessions 1, 2, and 3. Do the worksheets. Engage with me honestly. If by the end of Session 3 you can put your hand on your heart and say <em>"this isn't shifting anything"</em> — I refund 100% of what you've paid. No form. No interrogation. You just email me and it's done within five working days.</p>
+        <p class="guarantee-sub">Why I can offer this: in my experience, by the end of Session 3 you'll have mapped your money origin, identified your dominant money script, and already started seeing patterns you never named before. I'm willing to bet three sessions on that.</p>
+      </div>
+    </div>
+
     <div class="pricing-reassure reveal">
-      <p>All payments via Stripe. No hidden fees. Full refund if requested before Session 1 · partial refund in Sessions 1–3 · no refund after Session 4. The programme only works if you commit to the work.</p>
+      <p>All payments via Stripe · Secured by 256-bit SSL · No subscriptions · No hidden fees · Cancel the 2-month or 3-month plan any time within the Three-Session Promise window and get fully refunded.</p>
     </div>
   </div>
 </section>
@@ -402,6 +468,15 @@ const description = "A 1:1 coaching programme for people who've tried budgets, a
       <details class="faq-item">
         <summary>What if I'm not sure I'm ready?</summary>
         <p>Apply anyway. The application is short and the discovery call is genuinely a two-way conversation — we'll both work out if this is the right moment for you. If it's not, I'll say so, and I'll point you toward what is.</p>
+      </details>
+      <details class="faq-item">
+        <summary>How does the Three-Session Promise actually work?</summary>
+        <p>Show up to Sessions 1, 2, and 3. Engage with the work — do the worksheets, be honest in session. If by the end of Session 3 you genuinely feel this isn't shifting anything for you, email me <em>before Session 4 begins</em> and I'll refund 100% of what you've paid within five working days. No forms, no justifying yourself, no clawback.</p>
+        <p>The only thing I ask: you actually did the work. If you skipped sessions or didn't engage with the homework, that's not the method failing — that's a different conversation, and the refund doesn't apply.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What happens if I want to stop after Session 4?</summary>
+        <p>Honest answer: the programme is non-refundable after Session 4. Phases 2, 3, and 4 only work because of what was built in Phase 1 — the work compounds. If something changes in your life that means you need to pause, see the "What if I need to pause?" question above. Refunds after Session 4 are limited to genuinely exceptional circumstances (medical, bereavement), handled case-by-case.</p>
       </details>
     </div>
   </div>
@@ -1005,6 +1080,62 @@ const description = "A 1:1 coaching programme for people who've tried budgets, a
     line-height: 1.75;
   }
 
+  /* --- PORTAL PREVIEW (screenshots) --- */
+  .portal-preview { padding: 7rem 2rem; background: var(--color-bg-cool); }
+  .portal-preview-inner { max-width: 1200px; margin: 0 auto; }
+  .portal-preview h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 3.8vw, 2.8rem);
+    font-weight: 400; line-height: 1.2;
+    color: var(--color-charcoal);
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  .portal-preview h2 em { font-style: italic; color: var(--color-gold); }
+  .portal-preview-intro {
+    color: var(--color-slate);
+    font-size: 1.04rem; line-height: 1.8;
+    max-width: 660px;
+    margin: 0 auto 3.5rem;
+    text-align: center;
+  }
+  .portal-shots {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+  }
+  .shot {
+    margin: 0;
+    background: var(--color-bg-white);
+    border: 1px solid var(--color-border-warm);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(28, 42, 58, 0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .shot:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 28px rgba(28, 42, 58, 0.12);
+  }
+  .shot img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    object-position: top left;
+    display: block;
+    border-bottom: 1px solid var(--color-border-warm);
+  }
+  .shot figcaption {
+    padding: 1rem 1.25rem;
+    font-family: var(--font-heading-sc);
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    color: var(--color-slate);
+    text-transform: uppercase;
+    text-align: center;
+  }
+
   /* --- PILLARS --- */
   .pillars-section { padding: 7rem 2rem; background: var(--color-navy); color: var(--color-cream); position: relative; }
   .pillars-section::before {
@@ -1068,6 +1199,7 @@ const description = "A 1:1 coaching programme for people who've tried budgets, a
     height: auto;
     aspect-ratio: 4 / 5;
     object-fit: cover;
+    object-position: center 15%;
     border-radius: 8px;
     box-shadow:
       0 1px 3px rgba(28, 42, 58, 0.08),
@@ -1181,11 +1313,199 @@ const description = "A 1:1 coaching programme for people who've tried budgets, a
     color: var(--color-slate);
     margin-left: 0.5rem;
   }
+  .plan-perhour {
+    font-family: var(--font-heading-sc);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    color: var(--color-gold);
+    margin-top: 0.8rem;
+  }
   .plan-note {
     font-size: 0.88rem;
     color: var(--color-slate);
-    margin-top: 0.5rem;
+    margin-top: 0.4rem;
     margin-bottom: 1.5rem;
+  }
+
+  /* Price anchor (was £1000 → now £600) */
+  .price-anchor {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin: 0 auto 1.75rem;
+    padding: 0.9rem 1.75rem;
+    background: var(--color-bg-white);
+    border: 1px solid var(--color-border-warm);
+    border-radius: 999px;
+    box-shadow: 0 4px 12px rgba(28, 42, 58, 0.06);
+  }
+  .anchor-item {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    line-height: 1.2;
+  }
+  .anchor-item s {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    color: var(--color-slate);
+    text-decoration-color: rgba(220, 80, 80, 0.55);
+    text-decoration-thickness: 1.5px;
+  }
+  .anchor-item strong {
+    font-family: var(--font-heading);
+    font-weight: 400;
+    font-size: 1.6rem;
+    color: var(--color-navy);
+  }
+  .anchor-item span:last-child {
+    font-family: var(--font-heading-sc);
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+    color: var(--color-slate);
+    margin-top: 0.2rem;
+    text-transform: uppercase;
+  }
+  .anchor-is span:last-child {
+    color: var(--color-gold);
+  }
+  .anchor-arrow {
+    font-size: 1.3rem;
+    color: var(--color-gold);
+  }
+
+  /* Value stack */
+  .value-stack {
+    max-width: 780px;
+    margin: 4rem auto 0;
+    background: var(--color-bg-white);
+    border: 1px solid var(--color-border-warm);
+    border-top: 3px solid var(--color-gold);
+    border-radius: 8px;
+    padding: 2.25rem 2.5rem;
+  }
+  .value-stack h3 {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    font-weight: 400;
+    color: var(--color-charcoal);
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  .value-stack h3 em { font-style: italic; color: var(--color-gold); }
+  .value-grid { display: flex; flex-direction: column; }
+  .value-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1.5rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid rgba(212, 201, 184, 0.5);
+    font-size: 0.95rem;
+  }
+  .value-row:last-child { border-bottom: none; }
+  .value-what {
+    color: var(--color-charcoal);
+    line-height: 1.5;
+    flex: 1;
+  }
+  .value-worth {
+    font-family: var(--font-heading-sc);
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    color: var(--color-slate);
+    white-space: nowrap;
+  }
+  .value-total {
+    padding-top: 1.1rem;
+    margin-top: 0.4rem;
+    border-top: 1px solid var(--color-border-warm) !important;
+  }
+  .value-total .value-what,
+  .value-total .value-worth {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    color: var(--color-navy);
+    letter-spacing: 0;
+  }
+  .value-price {
+    padding: 1rem 1.25rem;
+    margin-top: 0.6rem;
+    background: var(--color-gold);
+    border-radius: 4px;
+    border-bottom: none !important;
+  }
+  .value-price .value-what,
+  .value-price .value-worth {
+    font-family: var(--font-heading);
+    color: var(--color-navy);
+    font-size: 1.1rem;
+    letter-spacing: 0;
+  }
+  .value-price strong {
+    font-size: 1.3rem;
+  }
+
+  /* Guarantee block */
+  .guarantee {
+    max-width: 820px;
+    margin: 4rem auto 0;
+    background: var(--color-navy);
+    color: var(--color-cream);
+    border-radius: 10px;
+    padding: 2.75rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .guarantee::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 3px; background: var(--color-gold);
+  }
+  .guarantee-badge {
+    color: var(--color-gold);
+    padding-top: 0.25rem;
+  }
+  .guarantee-tag {
+    font-family: var(--font-heading-sc);
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    color: var(--color-gold);
+    display: block;
+    margin-bottom: 0.6rem;
+  }
+  .guarantee-body h3 {
+    font-family: var(--font-heading);
+    font-size: clamp(1.4rem, 2.3vw, 1.75rem);
+    font-weight: 400;
+    line-height: 1.3;
+    color: var(--color-cream);
+    margin-bottom: 1.25rem;
+  }
+  .guarantee-body h3 em {
+    font-style: italic;
+    color: var(--color-gold);
+  }
+  .guarantee-body p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: rgba(245, 240, 232, 0.85);
+    margin-bottom: 1rem;
+  }
+  .guarantee-body p em {
+    font-style: italic;
+    color: var(--color-gold-subtle);
+  }
+  .guarantee-sub {
+    padding-top: 1.25rem;
+    margin-top: 0.5rem;
+    border-top: 1px solid rgba(196, 162, 101, 0.2);
+    font-size: 0.9rem !important;
+    color: rgba(245, 240, 232, 0.65) !important;
+    font-style: italic;
   }
   .plan-perks {
     list-style: none; padding: 0;
@@ -1449,7 +1769,8 @@ const description = "A 1:1 coaching programme for people who've tried budgets, a
   @media (max-width: 768px) {
     .hero { padding: 8rem 1.5rem 4rem; }
     .problem, .whofor, .notfor, .programme, .whatyouget,
-    .pillars-section, .about, .pricing, .faq, .apply-section {
+    .portal-preview, .pillars-section, .about, .pricing,
+    .faq, .apply-section {
       padding: 5rem 1.25rem;
     }
     .apply-form { padding: 1.75rem; }
@@ -1458,6 +1779,27 @@ const description = "A 1:1 coaching programme for people who've tried budgets, a
     .hero-actions :global(.btn-ghost) { width: 100%; text-align: center; }
     .phase { padding: 1.75rem; }
     .phase h3 { font-size: 1.6rem; }
+    /* Price anchor stacks on mobile */
+    .price-anchor {
+      flex-direction: column;
+      padding: 1.25rem 1.75rem;
+      gap: 0.75rem;
+      border-radius: 14px;
+    }
+    .anchor-arrow { transform: rotate(90deg); }
+    /* Value stack + guarantee */
+    .value-stack { padding: 1.75rem 1.25rem; }
+    .value-row { flex-direction: column; gap: 0.25rem; align-items: flex-start; }
+    .value-worth { font-size: 0.78rem; }
+    .guarantee {
+      grid-template-columns: 1fr;
+      padding: 2rem 1.5rem;
+      gap: 1rem;
+      text-align: left;
+    }
+    .guarantee-badge { padding-top: 0; }
+    /* Portal screenshots stack */
+    .portal-shots { grid-template-columns: 1fr; }
     /* Timeline: stack vertically on mobile, hide horizontal track */
     .timeline-track, .timeline-fill { display: none; }
     .timeline-points {
