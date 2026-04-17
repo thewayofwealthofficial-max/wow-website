@@ -215,13 +215,23 @@ const description = "A 1:1 coaching programme for people who've tried budgets, a
 
 <!-- ABOUT -->
 <section class="about" id="about">
-  <div class="about-inner reveal">
-    <span class="section-tag">About</span>
-    <h2>A quick note on <em>why me.</em></h2>
-    <p>I'm Joel. I built The Money Story Method because most of the financial advice I came across assumes you're already calm, organised, and confident with numbers — and most of the people I've sat across from in my career aren't. They're smart, capable humans who got stuck in a loop somewhere along the way.</p>
-    <p>I have a master's in behavioral economics and I'm a qualified financial planner in the UK. That combination matters here: one half is the science of why we do what we do with money, the other half is the practical, regulated craft of actually helping people sort it out.</p>
-    <p>I won't promise to make you rich. I won't promise a transformation in thirty days. What I can promise is 12 weeks of deep, honest, structured work — grounded in research, paced at the speed your nervous system can actually handle.</p>
-    <div class="credential-line"><em>Joel</em> &nbsp;·&nbsp; MSc Behavioral Economics &nbsp;·&nbsp; Qualified Financial Planner</div>
+  <div class="about-inner">
+    <div class="about-grid">
+      <div class="about-portrait reveal">
+        <img src="/images/joel-headshot.jpg" alt="Joel — MSc Behavioral Economics, Qualified Financial Planner" width="480" height="600" loading="lazy" />
+        <div class="about-portrait-credential">
+          <span>Joel</span>
+          <span class="cred-line">MSc Behavioral Economics · Qualified Financial Planner (UK)</span>
+        </div>
+      </div>
+      <div class="about-copy reveal">
+        <span class="section-tag">About</span>
+        <h2>A quick note on <em>why me.</em></h2>
+        <p>I'm Joel. I built The Money Story Method because most of the financial advice I came across assumes you're already calm, organised, and confident with numbers — and most of the people I've sat across from in my career aren't. They're smart, capable humans who got stuck in a loop somewhere along the way.</p>
+        <p>I have a master's in behavioral economics and I'm a qualified financial planner in the UK. That combination matters here: one half is the science of why we do what we do with money, the other half is the practical, regulated craft of actually helping people sort it out.</p>
+        <p>I won't promise to make you rich. I won't promise a transformation in thirty days. What I can promise is 12 weeks of deep, honest, structured work — grounded in research, paced at the speed your nervous system can actually handle.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -840,29 +850,73 @@ const description = "A 1:1 coaching programme for people who've tried budgets, a
 
   /* --- ABOUT --- */
   .about { padding: 7rem 2rem; background: var(--color-bg-white); }
-  .about-inner { max-width: 820px; margin: 0 auto; text-align: center; }
+  .about-inner { max-width: 1100px; margin: 0 auto; }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  .about-portrait {
+    position: relative;
+  }
+  .about-portrait img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow:
+      0 1px 3px rgba(28, 42, 58, 0.08),
+      0 20px 40px rgba(28, 42, 58, 0.12);
+    display: block;
+  }
+  .about-portrait::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 8px;
+    border: 1px solid rgba(196, 162, 101, 0.3);
+    pointer-events: none;
+    transform: translate(14px, 14px);
+    z-index: -1;
+    background: linear-gradient(135deg, rgba(196, 162, 101, 0.08), transparent);
+  }
+  .about-portrait-credential {
+    margin-top: 1.5rem;
+    padding: 1rem 1.25rem;
+    background: var(--color-cream);
+    border-left: 3px solid var(--color-gold);
+    border-radius: 0 4px 4px 0;
+  }
+  .about-portrait-credential span {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    color: var(--color-charcoal);
+  }
+  .about-portrait-credential .cred-line {
+    font-family: var(--font-heading-sc);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    color: var(--color-slate);
+    margin-top: 0.25rem;
+  }
+  .about-copy { align-self: center; }
   .about h2 {
     font-family: var(--font-heading);
     font-size: clamp(2rem, 3.5vw, 2.8rem);
     font-weight: 400; line-height: 1.2;
-    color: var(--color-charcoal); margin-bottom: 2rem;
+    color: var(--color-charcoal);
+    margin-bottom: 2rem;
+    margin-top: 0.5rem;
   }
   .about h2 em { font-style: italic; color: var(--color-gold); font-weight: 400; }
   .about p {
-    font-size: 1.08rem; color: var(--color-charcoal);
-    line-height: 1.9; margin-bottom: 1.4rem;
-    text-align: left;
+    font-size: 1.04rem; color: var(--color-charcoal);
+    line-height: 1.85; margin-bottom: 1.2rem;
   }
-  .about p:last-of-type { margin-bottom: 2.25rem; }
-  .credential-line {
-    font-family: var(--font-heading-sc);
-    font-size: 0.85rem; letter-spacing: 0.15em;
-    color: var(--color-slate);
-    padding-top: 2rem;
-    border-top: 1px solid var(--color-border-warm);
-    margin-top: 1rem;
-  }
-  .credential-line em { font-style: normal; color: var(--color-gold); }
+  .about p:last-of-type { margin-bottom: 0; }
 
   /* --- PRICING --- */
   .pricing { padding: 8rem 2rem; background: var(--color-cream); }
@@ -1185,6 +1239,8 @@ const description = "A 1:1 coaching programme for people who've tried budgets, a
     .plans { grid-template-columns: 1fr; }
     .plan-featured { transform: none; }
     .notfor-grid { grid-template-columns: 1fr; }
+    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .about-portrait { max-width: 380px; margin: 0 auto; }
   }
   @media (max-width: 768px) {
     .hero { padding: 8rem 1.5rem 4rem; }
