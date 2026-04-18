@@ -8,6 +8,16 @@ const description = "A 1:1 coaching programme for people who've tried budgets, a
 // Founding cohort counters — Joel updates these manually and pushes when a spot fills.
 const FOUNDING_SPOTS_REMAINING = 5;
 const FOUNDING_APPLICANTS = 0;
+
+// VSL — set to a YouTube video ID string (the 11-char code after ?v=) when recorded. Keep '' to show placeholder.
+const VSL_YOUTUBE_ID = '';
+
+// Video testimonials — paste YouTube IDs when recorded. Empty string = placeholder card.
+const VIDEO_TESTIMONIALS = [
+  { youtubeId: '', attribution: 'James, 31 · London · The Drifter' },
+  { youtubeId: '', attribution: 'Rhys, 34 · Manchester · The Over-Achiever' },
+  { youtubeId: '', attribution: 'Daniel, 29 · Bristol · The Avoider' },
+];
 ---
 <Layout title={title} description={description} canonical={`${LINKS.siteUrl}/coaching`}>
 
@@ -26,73 +36,123 @@ const FOUNDING_APPLICANTS = 0;
   </div>
 </section>
 
-<!-- ICEBERG DIAGRAM -->
+<!-- CREDENTIAL STRIP — 3 icons -->
+<section class="cred-strip">
+  <div class="cred-strip-inner reveal">
+    <div class="cred-item">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M14 2L3 7v7c0 6.08 4.69 11.42 11 12 6.31-.58 11-5.92 11-12V7L14 2z" stroke="#C4A265" stroke-width="1.5" stroke-linejoin="round"/>
+        <path d="M10 14l3 3 5-5" stroke="#C4A265" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <p class="cred-label">MSc Behavioural Economics</p>
+      <p class="cred-sub">Postgraduate trained — not a weekend certification</p>
+    </div>
+    <div class="cred-item">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M14 2L17 10H25L19 15L21 23L14 18L7 23L9 15L3 10H11L14 2Z" stroke="#C4A265" stroke-width="1.5" stroke-linejoin="round"/>
+      </svg>
+      <p class="cred-label">Level 4 Qualified Financial Planner (UK)</p>
+      <p class="cred-sub">Regulated — held a practising licence before building the method</p>
+    </div>
+    <div class="cred-item">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="14" cy="14" r="11" stroke="#C4A265" stroke-width="1.5"/>
+        <path d="M14 6v8l5 3" stroke="#C4A265" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <p class="cred-label">Evidence-based, not intuition-led</p>
+      <p class="cred-sub">Klontz · Kahneman · Thaler · Duhigg — not abundance theory</p>
+    </div>
+  </div>
+</section>
+
+<!-- VSL (Video Sales Letter) — placeholder until recorded -->
+<section class="vsl">
+  <div class="vsl-inner reveal">
+    <span class="section-tag">Watch First</span>
+    <h2>The method, <em>in 4 minutes.</em></h2>
+    <p class="vsl-intro">If you'd rather hear it than read it — start here. The 4-phase arc, where it came from, and whether it's the right work for you.</p>
+
+    {VSL_YOUTUBE_ID ? (
+      <div class="vsl-embed">
+        <iframe
+          src={`https://www.youtube-nocookie.com/embed/${VSL_YOUTUBE_ID}?rel=0`}
+          title="Money Story Method — 4-minute overview"
+          loading="lazy"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+    ) : (
+      <div class="vsl-placeholder">
+        <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="28" cy="28" r="27" stroke="#C4A265" stroke-width="1.5"/>
+          <polygon points="23,18 23,38 40,28" fill="#C4A265"/>
+        </svg>
+        <p class="vsl-placeholder-label">[ placeholder — VSL in production ]</p>
+        <p class="vsl-placeholder-sub">4-minute founder overview. Recording this week. When it's up, it plays here.</p>
+      </div>
+    )}
+  </div>
+</section>
+
+<!-- ICEBERG — redesigned with HTML labels for readability -->
 <section class="iceberg-section">
   <div class="iceberg-inner reveal">
     <span class="section-tag">The Method, in One Image</span>
     <h2>Budgets live above the waterline.<br /><em>The real work is below.</em></h2>
 
-    <div class="iceberg-figure" aria-label="Iceberg diagram — behaviour above the waterline, the story beneath it below">
-      <svg viewBox="0 0 600 460" role="img" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <defs>
-          <linearGradient id="ice-above" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#F5F0E8" />
-            <stop offset="100%" stop-color="#E8D5B0" />
-          </linearGradient>
-          <linearGradient id="ice-below" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#1C2A3A" />
-            <stop offset="100%" stop-color="#141F2B" />
-          </linearGradient>
-          <linearGradient id="water" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#C4A265" stop-opacity="0.55" />
-            <stop offset="100%" stop-color="#C4A265" stop-opacity="0.0" />
-          </linearGradient>
-        </defs>
+    <div class="iceberg-layout">
+      <!-- ABOVE WATER CARD -->
+      <div class="iceberg-card iceberg-above">
+        <p class="iceberg-card-label">ABOVE THE WATERLINE · BEHAVIOUR</p>
+        <ul class="iceberg-card-list">
+          <li>Budgets</li>
+          <li>Spreadsheets</li>
+          <li>Apps &amp; side hustles</li>
+          <li>Finance books &amp; courses</li>
+          <li>What you <em>track</em>, what you <em>try</em></li>
+        </ul>
+      </div>
 
-        <!-- Above-waterline iceberg (tip) -->
-        <polygon points="260,50 340,50 370,170 230,170" fill="url(#ice-above)" stroke="#C4A265" stroke-width="1.5" />
+      <!-- ICEBERG VISUAL -->
+      <div class="iceberg-figure" aria-hidden="true">
+        <svg viewBox="0 0 300 320" role="img" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="ice-above-v2" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#F5F0E8" />
+              <stop offset="100%" stop-color="#E8D5B0" />
+            </linearGradient>
+            <linearGradient id="ice-below-v2" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#1C2A3A" />
+              <stop offset="100%" stop-color="#141F2B" />
+            </linearGradient>
+            <linearGradient id="water-v2" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#C4A265" stop-opacity="0.6" />
+              <stop offset="100%" stop-color="#C4A265" stop-opacity="0" />
+            </linearGradient>
+          </defs>
+          <polygon points="120,30 180,30 200,110 100,110" fill="url(#ice-above-v2)" stroke="#C4A265" stroke-width="1.5" />
+          <line x1="10" y1="115" x2="290" y2="115" stroke="#C4A265" stroke-width="1.5" stroke-dasharray="4 5" />
+          <rect x="10" y="115" width="280" height="6" fill="url(#water-v2)" />
+          <polygon points="100,115 200,115 240,280 60,280" fill="url(#ice-below-v2)" stroke="#C4A265" stroke-width="1.2" />
+          <path d="M 85 160 L 140 155" stroke="#C4A265" stroke-width="0.8" opacity="0.3" />
+          <path d="M 80 210 L 180 205" stroke="#C4A265" stroke-width="0.8" opacity="0.25" />
+          <path d="M 75 250 L 220 245" stroke="#C4A265" stroke-width="0.8" opacity="0.2" />
+        </svg>
+      </div>
 
-        <!-- Waterline -->
-        <line x1="40" y1="175" x2="560" y2="175" stroke="#C4A265" stroke-width="1.5" stroke-dasharray="4 5" />
-        <rect x="40" y="175" width="520" height="8" fill="url(#water)" />
-
-        <!-- Below-waterline iceberg (mass) -->
-        <polygon points="230,175 370,175 430,380 170,380" fill="url(#ice-below)" stroke="#C4A265" stroke-width="1.2" opacity="0.95" />
-
-        <!-- Subtle highlight lines on the submerged mass -->
-        <path d="M 200 220 L 260 215" stroke="#C4A265" stroke-width="0.8" opacity="0.35" />
-        <path d="M 210 280 L 330 270" stroke="#C4A265" stroke-width="0.8" opacity="0.3" />
-        <path d="M 200 340 L 400 335" stroke="#C4A265" stroke-width="0.8" opacity="0.25" />
-
-        <!-- Labels ABOVE -->
-        <text x="40" y="70" class="ice-label ice-label-above">BEHAVIOUR</text>
-        <text x="40" y="92" class="ice-sub ice-sub-above">Budgets</text>
-        <text x="40" y="112" class="ice-sub ice-sub-above">Spreadsheets</text>
-        <text x="40" y="132" class="ice-sub ice-sub-above">Apps</text>
-        <text x="40" y="152" class="ice-sub ice-sub-above">Side hustles</text>
-
-        <text x="460" y="70" class="ice-label ice-label-above">VISIBLE</text>
-        <text x="460" y="92" class="ice-sub ice-sub-above">What you do</text>
-        <text x="460" y="112" class="ice-sub ice-sub-above">What you track</text>
-        <text x="460" y="132" class="ice-sub ice-sub-above">What you try</text>
-        <text x="460" y="152" class="ice-sub ice-sub-above">Finance books</text>
-
-        <!-- Labels BELOW -->
-        <text x="40" y="230" class="ice-label ice-label-below">THE STORY</text>
-        <text x="40" y="252" class="ice-sub ice-sub-below">The pattern repeating</text>
-        <text x="40" y="272" class="ice-sub ice-sub-below">The thing you won't look at</text>
-        <text x="40" y="292" class="ice-sub ice-sub-below">What you learned about money</text>
-        <text x="40" y="312" class="ice-sub ice-sub-below">before you could name it</text>
-
-        <text x="460" y="230" class="ice-label ice-label-below">INVISIBLE</text>
-        <text x="460" y="252" class="ice-sub ice-sub-below">Inherited beliefs</text>
-        <text x="460" y="272" class="ice-sub ice-sub-below">Fear of looking</text>
-        <text x="460" y="292" class="ice-sub ice-sub-below">Shame loops</text>
-        <text x="460" y="312" class="ice-sub ice-sub-below">Identity around money</text>
-
-        <!-- Waterline tag -->
-        <text x="300" y="168" text-anchor="middle" class="ice-waterline">the waterline</text>
-      </svg>
+      <!-- BELOW WATER CARD -->
+      <div class="iceberg-card iceberg-below">
+        <p class="iceberg-card-label">BELOW THE WATERLINE · THE STORY</p>
+        <ul class="iceberg-card-list iceberg-card-list-below">
+          <li>Inherited beliefs about money</li>
+          <li>Fear of looking at the number</li>
+          <li>Shame loops that override plans</li>
+          <li>Identity tangled up in earning</li>
+          <li>What you learned <em>before</em> you could name it</li>
+        </ul>
+      </div>
     </div>
 
     <p class="iceberg-caption">Most financial advice works above the line. The Money Story Method starts below it.</p>
@@ -114,13 +174,19 @@ const FOUNDING_APPLICANTS = 0;
 <section class="origin">
   <div class="origin-inner reveal">
     <span class="section-tag">Origin</span>
-    <h2>Why I built <em>the method.</em></h2>
-    <div class="origin-body">
-      <p>I spent years in financial services at AAGSJP. I built plans that made perfect sense on paper. Then I watched client after client nod, take the plan home, and change nothing.</p>
-      <p>That's not a willpower problem. That's a story problem — and nothing in my training was set up to see it, let alone work with it.</p>
-      <p>So I went and got an MSc in Behavioural Economics. I wanted to understand, properly, why the gap between knowing and doing is so wide when it comes to money. What I learned is that the plan is almost never the issue. It's what's running underneath it — the things you learned about money before you could name them, the story you've been inside so long you stopped noticing it.</p>
-      <p>The Money Story Method is what I built to do that work underneath first. Once the story shifts, the plan finally holds.</p>
-      <p class="origin-sign">— Joel</p>
+    <div class="origin-layout">
+      <figure class="origin-portrait">
+        <img src="/images/joel-headshot.jpg" alt="Joel — Way of Wealth" loading="lazy" />
+        <figcaption>Joel · MSc Behavioural Economics · QFP (UK)</figcaption>
+      </figure>
+      <div class="origin-body">
+        <h2>Why I built <em>the method.</em></h2>
+        <p>I spent years in financial services at AAGSJP. I built plans that made perfect sense on paper. Then I watched client after client nod, take the plan home, and change nothing.</p>
+        <p>That's not a willpower problem. That's a story problem — and nothing in my training was set up to see it, let alone work with it.</p>
+        <p>So I went and got an MSc in Behavioural Economics. I wanted to understand, properly, why the gap between knowing and doing is so wide when it comes to money. What I learned is that the plan is almost never the issue. It's what's running underneath it — the things you learned about money before you could name them, the story you've been inside so long you stopped noticing it.</p>
+        <p>The Money Story Method is what I built to do that work underneath first. Once the story shifts, the plan finally holds.</p>
+        <p class="origin-sign">— Joel</p>
+      </div>
     </div>
   </div>
 </section>
@@ -395,7 +461,7 @@ const FOUNDING_APPLICANTS = 0;
 <section class="authority">
   <div class="authority-inner">
     <div class="section-head reveal">
-      <span class="section-tag">Authority Stack</span>
+      <span class="section-tag">The Research</span>
       <h2>Grounded in the research <em>that matters.</em></h2>
       <p class="authority-intro">This isn't invented. The method sits on top of four bodies of peer-reviewed work, plus a postgraduate degree trained in applying them. If a tool or framework shows up in a session, it came from here — not from an Instagram carousel.</p>
     </div>
@@ -435,6 +501,34 @@ const FOUNDING_APPLICANTS = 0;
       <h2>Early work, <em>early clients.</em></h2>
       <p class="proof-cohort-line">Founding cohort · {FOUNDING_SPOTS_REMAINING} spots remaining · <span class="proof-applicants">[placeholder: {FOUNDING_APPLICANTS} applicants on the list]</span></p>
       <p class="proof-intro">The testimonials below are placeholders — marked clearly. They're here so the page reads the way it will once real founding-cohort work is finished. Real, named quotes will replace them as clients graduate.</p>
+    </div>
+
+    <div class="video-testimonials reveal">
+      {VIDEO_TESTIMONIALS.map((vt) => (
+        <figure class="video-testimonial">
+          {vt.youtubeId ? (
+            <div class="video-embed">
+              <iframe
+                src={`https://www.youtube-nocookie.com/embed/${vt.youtubeId}?rel=0`}
+                title={`Video testimonial — ${vt.attribution}`}
+                loading="lazy"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen>
+              </iframe>
+            </div>
+          ) : (
+            <div class="video-placeholder">
+              <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="20" cy="20" r="19" stroke="#C4A265" stroke-width="1.5"/>
+                <polygon points="16,12 16,28 28,20" fill="#C4A265"/>
+              </svg>
+              <p class="video-placeholder-label">[ video placeholder ]</p>
+            </div>
+          )}
+          <figcaption>{vt.attribution}</figcaption>
+        </figure>
+      ))}
     </div>
 
     <div class="testimonials reveal">
@@ -871,64 +965,213 @@ const FOUNDING_APPLICANTS = 0;
     border-radius: 4px;
   }
 
-  /* --- ICEBERG --- */
-  .iceberg-section {
-    padding: 6rem 2rem 7rem;
+  /* --- CRED STRIP (3 icons) --- */
+  .cred-strip {
+    padding: 3rem 2rem;
+    background: var(--color-cream);
+    border-top: 1px solid var(--color-border-warm);
+    border-bottom: 1px solid var(--color-border-warm);
+  }
+  .cred-strip-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+  }
+  .cred-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.6rem;
+  }
+  .cred-item svg { flex-shrink: 0; }
+  .cred-label {
+    font-family: var(--font-heading-sc);
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    color: var(--color-charcoal);
+    margin: 0.3rem 0 0;
+  }
+  .cred-sub {
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    color: var(--color-slate);
+    line-height: 1.55;
+    margin: 0;
+    max-width: 280px;
+  }
+  @media (max-width: 800px) {
+    .cred-strip-inner { grid-template-columns: 1fr; gap: 1.75rem; }
+  }
+
+  /* --- VSL --- */
+  .vsl {
+    padding: 6rem 2rem 5rem;
     background: var(--color-bg-white);
+  }
+  .vsl-inner {
+    max-width: 880px;
+    margin: 0 auto;
     text-align: center;
   }
+  .vsl h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(1.9rem, 3.5vw, 2.6rem);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--color-charcoal);
+    margin-bottom: 1rem;
+  }
+  .vsl h2 em { font-style: italic; color: var(--color-gold); font-weight: 400; }
+  .vsl-intro {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    color: var(--color-slate);
+    margin-bottom: 2.5rem;
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+  }
+  .vsl-embed {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 6px 30px rgba(28, 42, 58, 0.12);
+  }
+  .vsl-embed iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: 0;
+  }
+  .vsl-placeholder {
+    background: var(--color-cream);
+    border: 1.5px dashed var(--color-border-warm);
+    border-radius: 8px;
+    padding: 4rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  .vsl-placeholder-label {
+    font-family: var(--font-ui);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    margin: 0;
+  }
+  .vsl-placeholder-sub {
+    font-family: var(--font-body);
+    font-size: 0.98rem;
+    color: var(--color-slate);
+    margin: 0;
+    max-width: 480px;
+    text-align: center;
+  }
+
+  /* --- ICEBERG (HTML labels, readable at all sizes) --- */
+  .iceberg-section {
+    padding: 6rem 2rem;
+    background: var(--color-cream);
+  }
   .iceberg-inner {
-    max-width: 900px;
+    max-width: 1100px;
     margin: 0 auto;
+    text-align: center;
   }
   .iceberg-section h2 {
     font-family: var(--font-heading);
     font-size: clamp(1.9rem, 3.5vw, 2.6rem);
     font-weight: 400;
-    line-height: 1.25;
+    line-height: 1.2;
     color: var(--color-charcoal);
-    margin-bottom: 3rem;
+    margin-bottom: 2.5rem;
   }
   .iceberg-section h2 em { font-style: italic; color: var(--color-gold); font-weight: 400; }
+  .iceberg-layout {
+    display: grid;
+    grid-template-columns: 1fr 280px 1fr;
+    gap: 2rem;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
   .iceberg-figure {
-    max-width: 720px;
-    margin: 0 auto 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .iceberg-figure svg {
     width: 100%;
+    max-width: 260px;
     height: auto;
-    display: block;
   }
-  :global(.ice-label) {
-    font-family: 'Playfair Display SC', Georgia, serif;
-    font-size: 11px;
-    letter-spacing: 0.18em;
-    fill: var(--color-gold);
+  .iceberg-card {
+    padding: 1.75rem;
+    border-radius: 8px;
+    text-align: left;
   }
-  :global(.ice-sub) {
-    font-family: 'Lora', Georgia, serif;
-    font-size: 12px;
-    font-style: italic;
+  .iceberg-above {
+    background: var(--color-bg-white);
+    border: 1px solid var(--color-border-warm);
   }
-  :global(.ice-label-above) { fill: #1C2A3A; opacity: 0.75; }
-  :global(.ice-sub-above) { fill: #1C2A3A; opacity: 0.7; }
-  :global(.ice-label-below) { fill: #C4A265; }
-  :global(.ice-sub-below) { fill: rgba(245, 240, 232, 0.9); }
-  :global(.ice-waterline) {
-    font-family: 'Playfair Display SC', Georgia, serif;
-    font-size: 9px;
-    letter-spacing: 0.2em;
-    fill: var(--color-gold);
-    opacity: 0.85;
+  .iceberg-below {
+    background: var(--color-navy);
+    color: var(--color-cream);
   }
+  .iceberg-card-label {
+    font-family: var(--font-heading-sc);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    color: var(--color-gold);
+    margin: 0 0 0.85rem;
+  }
+  .iceberg-above .iceberg-card-label { color: var(--color-slate); }
+  .iceberg-card-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: 0.98rem;
+    line-height: 1.85;
+  }
+  .iceberg-above .iceberg-card-list { color: var(--color-charcoal); }
+  .iceberg-below .iceberg-card-list { color: var(--color-cream); }
+  .iceberg-card-list li { position: relative; padding-left: 1rem; }
+  .iceberg-card-list li::before {
+    content: '·';
+    color: var(--color-gold);
+    position: absolute;
+    left: 0;
+    font-weight: 700;
+  }
+  .iceberg-card-list em { font-style: italic; color: var(--color-gold); }
+  .iceberg-below .iceberg-card-list em { color: var(--color-gold-subtle); }
   .iceberg-caption {
     font-family: var(--font-body);
     font-style: italic;
     font-size: 1.05rem;
     color: var(--color-slate);
-    line-height: 1.7;
-    max-width: 560px;
-    margin: 0 auto;
+    margin-top: 2rem;
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  @media (max-width: 900px) {
+    .iceberg-layout {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    .iceberg-figure { order: 2; }
+    .iceberg-above { order: 1; }
+    .iceberg-below { order: 3; }
+    .iceberg-figure svg { max-width: 200px; }
   }
 
   /* --- PROBLEM --- */
@@ -981,6 +1224,37 @@ const FOUNDING_APPLICANTS = 0;
     font-size: 1.15rem !important;
     color: var(--color-gold);
     margin-top: 2rem !important;
+  }
+  .origin-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 3rem;
+    align-items: start;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .origin-portrait {
+    margin: 0;
+  }
+  .origin-portrait img {
+    width: 100%;
+    border-radius: 8px;
+    display: block;
+  }
+  .origin-portrait figcaption {
+    font-family: var(--font-heading-sc);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    color: var(--color-slate);
+    margin-top: 0.75rem;
+    text-align: center;
+  }
+  @media (max-width: 800px) {
+    .origin-layout {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    .origin-portrait { max-width: 240px; margin: 0 auto; }
   }
 
   /* --- ARCHETYPES --- */
@@ -1527,6 +1801,61 @@ const FOUNDING_APPLICANTS = 0;
     padding: 1.25rem 1.5rem;
     border-top: 1px solid var(--color-border-warm);
     border-bottom: 1px solid var(--color-border-warm);
+  }
+
+  /* --- VIDEO TESTIMONIALS --- */
+  .video-testimonials {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+  .video-testimonial {
+    margin: 0;
+  }
+  .video-embed {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(28, 42, 58, 0.1);
+  }
+  .video-embed iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: 0;
+  }
+  .video-placeholder {
+    aspect-ratio: 16 / 9;
+    background: var(--color-cream);
+    border: 1.5px dashed var(--color-border-warm);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  .video-placeholder-label {
+    font-family: var(--font-ui);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    margin: 0;
+  }
+  .video-testimonial figcaption {
+    font-family: var(--font-heading-sc);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    color: var(--color-slate);
+    margin-top: 0.85rem;
+    text-align: center;
+  }
+  @media (max-width: 800px) {
+    .video-testimonials { grid-template-columns: 1fr; }
   }
 
   /* --- PROOF / TESTIMONIALS --- */
@@ -2145,9 +2474,6 @@ const FOUNDING_APPLICANTS = 0;
     .phase h3 { font-size: 1.6rem; }
     .forwho-col { padding: 1.75rem; }
     .authority-grid { grid-template-columns: 1fr; }
-    /* Iceberg labels get smaller on mobile */
-    :global(.ice-label) { font-size: 9px; }
-    :global(.ice-sub) { font-size: 10px; }
     /* Price anchor stacks on mobile */
     .price-anchor {
       flex-direction: column;
