@@ -65,7 +65,7 @@ jobs:
           SLUG="${{ steps.generate.outputs.slug }}"
           node scripts/telegram-notify.mjs --emoji "📝" --title "New blog post live" --body "$QUESTION
 
-https://thewayofwealth.shop/blog/$SLUG"
+          https://thewayofwealth.shop/blog/$SLUG"
 
       - name: Notify Telegram on failure
         if: failure()
@@ -76,7 +76,7 @@ https://thewayofwealth.shop/blog/$SLUG"
           RUN_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           node scripts/telegram-notify.mjs --emoji "❌" --title "Daily blog post FAILED" --body "No post published today. Check the run logs:
 
-$RUN_URL"
+          $RUN_URL"
 
       - name: Open issue on failure
         if: failure()

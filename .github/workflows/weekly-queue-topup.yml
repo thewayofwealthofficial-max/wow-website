@@ -73,7 +73,7 @@ Queue now: $QUEUED waiting."
           RUN_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           node scripts/telegram-notify.mjs --emoji "❌" --title "Weekly queue topup FAILED" --body "Queue was not replenished this week. Daily posts continue until queue empties. Check logs:
 
-$RUN_URL"
+          $RUN_URL"
 
       - name: Open issue on failure
         if: failure()
