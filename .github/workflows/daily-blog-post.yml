@@ -1,12 +1,13 @@
 name: Daily Blog Post
 
-# Runs daily at 05:00 UTC = 06:00 BST (UK summer) / 05:00 GMT (UK winter).
-# Joel wakes up to a fresh post on www.wayofwealthstudio.shop.
+# Runs daily at 03:17 UTC (04:17 BST / 03:17 GMT).
+# Early + off-peak minute to dodge GitHub's scheduled-workflow delay (can be 30–90 min at :00 UTC).
+# Even with a 90-min delay the post lands before 05:00 UTC, so Joel still wakes up to a fresh post.
 # Manual trigger via the Actions tab is also enabled for testing.
 
 on:
   schedule:
-    - cron: '0 5 * * *'
+    - cron: '17 3 * * *'
   workflow_dispatch:
 
 permissions:
@@ -43,7 +44,7 @@ jobs:
       - name: Commit + push
         run: |
           git config user.name "Way of Wealth Bot"
-          git config user.email "thewayofwealth.official@gmail.com"
+          git config user.email "bot@thewayofwealth.shop"
           git add src/content/blog/ src/content/reddit-queue.md
           if git diff --staged --quiet; then
             echo "No changes to commit (queue may be empty)."
@@ -64,7 +65,7 @@ jobs:
           SLUG="${{ steps.generate.outputs.slug }}"
           node scripts/telegram-notify.mjs --emoji "📝" --title "New blog post live" --body "$QUESTION
 
-https://mainwebstie.netlify.app/blog/$SLUG"
+https://thewayofwealth.shop/blog/$SLUG"
 
       - name: Notify Telegram on failure
         if: failure()

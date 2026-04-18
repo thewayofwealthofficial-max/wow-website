@@ -83,6 +83,6 @@ You're not undisciplined. You're not bad with money. You're a human being whose 
 
 The way out isn't shame. It's structure that works *with* how your brain actually categorises money.
 
-If you want to understand which specific money beliefs are driving your pattern (because it's not the same for everyone), the [Money Beliefs Quiz](https://wayofwealth.co.uk/quiz) will show you. It's 2 minutes, and it maps your results against the academic research on money scripts and financial psychology. You'll get a personalised report that names what's happening — which is always the first step to changing it.
+If you want to understand which specific money beliefs are driving your pattern (because it's not the same for everyone), the [Money Beliefs Quiz](https://money-beliefs-quiz.netlify.app) will show you. It's 2 minutes, and it maps your results against the academic research on money scripts and financial psychology. You'll get a personalised report that names what's happening — which is always the first step to changing it.
 
 — *Joel*

@@ -1,6 +1,7 @@
 import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
 import type { APIContext } from 'astro';
+import { LINKS } from '../config/links';
 
 export async function GET(context: APIContext) {
   const posts = (await getCollection('blog', ({ data }) => !data.draft))
@@ -9,7 +10,7 @@ export async function GET(context: APIContext) {
   return rss({
     title: 'Way of Wealth — Blog',
     description: 'Honest, research-based notes on the behavioral side of money. By Joel — MSc Behavioral Economics, Qualified Financial Planner.',
-    site: context.site ?? 'https://www.wayofwealthstudio.shop',
+    site: context.site ?? LINKS.siteUrl,
     items: posts.map((post) => ({
       title: post.data.title,
       pubDate: post.data.pubDate,

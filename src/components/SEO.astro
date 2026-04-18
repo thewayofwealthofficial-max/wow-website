@@ -1,4 +1,6 @@
 ---
+import { LINKS } from '../config/links';
+
 interface Props {
   title: string;
   description: string;
@@ -7,7 +9,7 @@ interface Props {
   articleSchema?: Record<string, unknown>;
 }
 
-const SITE = 'https://www.wayofwealthstudio.shop';
+const SITE = LINKS.siteUrl;
 const DEFAULT_OG = `${SITE}/og-default.svg`;
 
 const {

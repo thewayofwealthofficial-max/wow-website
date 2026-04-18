@@ -3,7 +3,8 @@ import sitemap from '@astrojs/sitemap';
 import mdx from '@astrojs/mdx';
 
 export default defineConfig({
-  site: 'https://www.wayofwealthstudio.shop',
+  // Must match LINKS.siteUrl in src/config/links.ts — this is the only duplication (astro.config is loaded before TS).
+  site: 'https://thewayofwealth.shop',
   trailingSlash: 'never',
   integrations: [
     sitemap({

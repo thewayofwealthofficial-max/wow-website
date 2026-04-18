@@ -70,7 +70,7 @@ That moment — that's your data. That's where your brain made a choice to prior
 
 Once you know your pattern, you can design around it. Not through it. Around it.
 
-If you want to dig deeper into the specific beliefs driving your money behaviour, I built the [Money Beliefs Quiz](https://wayofwealth.co.uk/quiz) to help identify which unconscious patterns are running the show. It's free, takes about eight minutes, and gives you a personalised breakdown of your money psychology. Several thousand people have taken it now, and the most common feedback is "Oh. So it's not just me."
+If you want to dig deeper into the specific beliefs driving your money behaviour, I built the [Money Beliefs Quiz](https://money-beliefs-quiz.netlify.app) to help identify which unconscious patterns are running the show. It's free, takes about eight minutes, and gives you a personalised breakdown of your money psychology. Several thousand people have taken it now, and the most common feedback is "Oh. So it's not just me."
 
 No. It's definitely not just you.
 

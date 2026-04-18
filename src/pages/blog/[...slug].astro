@@ -4,6 +4,7 @@ import type { GetStaticPaths } from 'astro';
 import Layout from '../../layouts/Layout.astro';
 import PostCTA from '../../components/PostCTA.astro';
 import RelatedPosts from '../../components/RelatedPosts.astro';
+import { LINKS } from '../../config/links';
 
 export const getStaticPaths = (async () => {
   const posts = await getCollection('blog', ({ data }) => !data.draft);
@@ -20,7 +21,7 @@ const dateFmt = new Intl.DateTimeFormat('en-GB', {
   year: 'numeric', month: 'long', day: 'numeric',
 });
 
-const SITE = 'https://www.wayofwealthstudio.shop';
+const SITE = LINKS.siteUrl;
 const canonical = `${SITE}/blog/${post.id}`;
 
 const articleSchema = {

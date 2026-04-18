@@ -1,11 +1,12 @@
 name: Weekly Monday Report
 
-# Runs Monday 07:30 UTC (30 min after daily brief to avoid overlap).
+# Runs Monday 05:53 UTC (30 min after daily brief at 05:23 to avoid overlap).
+# Off-peak minute to dodge GitHub's scheduled-workflow delay.
 # Deeper analysis of the week's performance, sends via Telegram to Joel.
 
 on:
   schedule:
-    - cron: '30 7 * * 1'
+    - cron: '53 5 * * 1'
   workflow_dispatch:
 
 permissions:

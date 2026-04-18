@@ -1,12 +1,12 @@
 name: Weekly Queue Topup
 
-# Every Sunday at 18:00 UTC, scrape Reddit and ask Claude to curate
-# 5 new Jess questions into the queue. Keeps the daily post pipeline
-# from ever running dry.
+# Every Sunday at 17:43 UTC, scrape Reddit and ask Claude to curate
+# 5 new Jess questions into the queue. Off-peak minute to dodge GitHub's
+# scheduled-workflow delay at :00. Keeps the daily post pipeline from ever running dry.
 
 on:
   schedule:
-    - cron: '0 18 * * 0'
+    - cron: '43 17 * * 0'
   workflow_dispatch:
 
 permissions:
@@ -42,7 +42,7 @@ jobs:
       - name: Commit + push
         run: |
           git config user.name "Way of Wealth Bot"
-          git config user.email "thewayofwealth.official@gmail.com"
+          git config user.email "bot@thewayofwealth.shop"
           git add src/content/reddit-queue.md
           if git diff --staged --quiet; then
             echo "No queue changes."
