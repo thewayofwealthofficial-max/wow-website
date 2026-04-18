@@ -5,19 +5,11 @@ import { LINKS } from '../config/links';
 const title = "The Money Story Method — 12-Week Behavioural Coaching Programme | Way of Wealth";
 const description = "A 1:1 coaching programme for people who've tried budgets, apps, and spreadsheets — and still feel stuck. MSc Behavioral Economics | Qualified Financial Planner.";
 
-// Founding cohort counters — Joel updates these manually and pushes when a spot fills.
+// Founding cohort spots remaining — Joel updates this manually and pushes when a spot fills.
 const FOUNDING_SPOTS_REMAINING = 5;
-const FOUNDING_APPLICANTS = 0;
 
 // VSL — set to a YouTube video ID string (the 11-char code after ?v=) when recorded. Keep '' to show placeholder.
 const VSL_YOUTUBE_ID = '';
-
-// Video testimonials — paste YouTube IDs when recorded. Empty string = placeholder card.
-const VIDEO_TESTIMONIALS = [
-  { youtubeId: '', attribution: 'James, 31 · London · The Drifter' },
-  { youtubeId: '', attribution: 'Rhys, 34 · Manchester · The Over-Achiever' },
-  { youtubeId: '', attribution: 'Daniel, 29 · Bristol · The Avoider' },
-];
 ---
 <Layout title={title} description={description} canonical={`${LINKS.siteUrl}/coaching`}>
 
@@ -181,10 +173,10 @@ const VIDEO_TESTIMONIALS = [
       </figure>
       <div class="origin-body">
         <h2>Why I built <em>the method.</em></h2>
-        <p>I spent years in financial services at AAGSJP. I built plans that made perfect sense on paper. Then I watched client after client nod, take the plan home, and change nothing.</p>
-        <p>That's not a willpower problem. That's a story problem — and nothing in my training was set up to see it, let alone work with it.</p>
-        <p>So I went and got an MSc in Behavioural Economics. I wanted to understand, properly, why the gap between knowing and doing is so wide when it comes to money. What I learned is that the plan is almost never the issue. It's what's running underneath it — the things you learned about money before you could name them, the story you've been inside so long you stopped noticing it.</p>
-        <p>The Money Story Method is what I built to do that work underneath first. Once the story shifts, the plan finally holds.</p>
+        <p>I studied Behavioural Economics at MSc level because I wanted to understand why smart, capable people make irrational money decisions.</p>
+        <p>Then I spent years working as a financial planner at the biggest wealth management firm in the UK. I built plans for people who were doing everything right on paper — earning well, analytical, disciplined — and watched most of them go home with a sound financial plan and change almost nothing about how they lived.</p>
+        <p>The reason has nothing to do with willpower. It has everything to do with the beliefs and stories running underneath — the ones people are carrying every day without noticing, the ones they learned about money long before anyone asked them to make a budget.</p>
+        <p>The Money Story Method is what I built to work that layer first. Once the story shifts, the plan finally holds.</p>
         <p class="origin-sign">— Joel</p>
       </div>
     </div>
@@ -493,71 +485,8 @@ const VIDEO_TESTIMONIALS = [
   </div>
 </section>
 
-<!-- PROOF / SOCIAL PROOF (placeholder while pre-launch) -->
-<section class="proof">
-  <div class="proof-inner">
-    <div class="section-head reveal">
-      <span class="section-tag">Founding Cohort</span>
-      <h2>Early work, <em>early clients.</em></h2>
-      <p class="proof-cohort-line">Founding cohort · {FOUNDING_SPOTS_REMAINING} spots remaining · <span class="proof-applicants">[placeholder: {FOUNDING_APPLICANTS} applicants on the list]</span></p>
-      <p class="proof-intro">The testimonials below are placeholders — marked clearly. They're here so the page reads the way it will once real founding-cohort work is finished. Real, named quotes will replace them as clients graduate.</p>
-    </div>
+<!-- Proof / testimonials section removed until real client quotes exist. Page stays polished for real traffic. -->
 
-    <div class="video-testimonials reveal">
-      {VIDEO_TESTIMONIALS.map((vt) => (
-        <figure class="video-testimonial">
-          {vt.youtubeId ? (
-            <div class="video-embed">
-              <iframe
-                src={`https://www.youtube-nocookie.com/embed/${vt.youtubeId}?rel=0`}
-                title={`Video testimonial — ${vt.attribution}`}
-                loading="lazy"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen>
-              </iframe>
-            </div>
-          ) : (
-            <div class="video-placeholder">
-              <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <circle cx="20" cy="20" r="19" stroke="#C4A265" stroke-width="1.5"/>
-                <polygon points="16,12 16,28 28,20" fill="#C4A265"/>
-              </svg>
-              <p class="video-placeholder-label">[ video placeholder ]</p>
-            </div>
-          )}
-          <figcaption>{vt.attribution}</figcaption>
-        </figure>
-      ))}
-    </div>
-
-    <div class="testimonials reveal">
-      <figure class="testimonial">
-        <span class="testimonial-tag">[ placeholder — not a real client ]</span>
-        <blockquote>
-          <p>I'd been drifting for about six years. Good income, nothing to show for it, vaguely embarrassed about it whenever anyone asked. The work in Phase 1 cracked open something I hadn't looked at since I was about fourteen. By the end I had an actual direction — not a budget, a <em>direction</em>. Money started accumulating once I knew what I was accumulating it for.</p>
-        </blockquote>
-        <figcaption>James, 31 · London · The Drifter</figcaption>
-      </figure>
-
-      <figure class="testimonial">
-        <span class="testimonial-tag">[ placeholder — not a real client ]</span>
-        <blockquote>
-          <p>I came in wanting "a plan". I left realising I'd been using plans to avoid a conversation with myself. The goalposts I'd been chasing weren't mine — they were inherited, and hitting them never changed the feeling in my chest. Joel didn't try to talk me out of ambition. He helped me aim it somewhere I actually wanted to be.</p>
-        </blockquote>
-        <figcaption>Rhys, 34 · Manchester · The Over-Achiever</figcaption>
-      </figure>
-
-      <figure class="testimonial">
-        <span class="testimonial-tag">[ placeholder — not a real client ]</span>
-        <blockquote>
-          <p>I hadn't opened my main banking app properly in about two years. The idea of looking made me feel ill. What worked wasn't being pushed to look — it was understanding <em>why</em> I couldn't, and going slower than any other finance thing I'd ever tried. By Week 6 I was opening the app without a knot in my stomach. That alone was worth the programme.</p>
-        </blockquote>
-        <figcaption>Daniel, 29 · Bristol · The Avoider</figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
 
 <!-- PRICING -->
 <section class="pricing">
@@ -1803,148 +1732,7 @@ const VIDEO_TESTIMONIALS = [
     border-bottom: 1px solid var(--color-border-warm);
   }
 
-  /* --- VIDEO TESTIMONIALS --- */
-  .video-testimonials {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    margin-bottom: 2.5rem;
-  }
-  .video-testimonial {
-    margin: 0;
-  }
-  .video-embed {
-    position: relative;
-    width: 100%;
-    padding-bottom: 56.25%;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 20px rgba(28, 42, 58, 0.1);
-  }
-  .video-embed iframe {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    border: 0;
-  }
-  .video-placeholder {
-    aspect-ratio: 16 / 9;
-    background: var(--color-cream);
-    border: 1.5px dashed var(--color-border-warm);
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-  }
-  .video-placeholder-label {
-    font-family: var(--font-ui);
-    font-size: 0.72rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--color-gold);
-    margin: 0;
-  }
-  .video-testimonial figcaption {
-    font-family: var(--font-heading-sc);
-    font-size: 0.72rem;
-    letter-spacing: 0.14em;
-    color: var(--color-slate);
-    margin-top: 0.85rem;
-    text-align: center;
-  }
-  @media (max-width: 800px) {
-    .video-testimonials { grid-template-columns: 1fr; }
-  }
-
-  /* --- PROOF / TESTIMONIALS --- */
-  .proof {
-    padding: 7rem 2rem;
-    background: var(--color-bg-white);
-  }
-  .proof-inner { max-width: 1100px; margin: 0 auto; }
-  .proof h2 {
-    font-family: var(--font-heading);
-    font-size: clamp(1.9rem, 3.5vw, 2.6rem);
-    font-weight: 400;
-    line-height: 1.2;
-    color: var(--color-charcoal);
-    margin-bottom: 1.25rem;
-  }
-  .proof h2 em { font-style: italic; color: var(--color-gold); font-weight: 400; }
-  .proof-cohort-line {
-    font-family: var(--font-heading-sc);
-    font-size: 0.78rem;
-    letter-spacing: 0.18em;
-    color: var(--color-slate);
-    margin-bottom: 1.75rem;
-    text-transform: uppercase;
-  }
-  .proof-applicants {
-    color: var(--color-gold);
-    font-style: italic;
-    letter-spacing: 0.1em;
-    text-transform: none;
-  }
-  .proof-intro {
-    color: var(--color-slate);
-    font-size: 0.98rem;
-    line-height: 1.8;
-    max-width: 680px;
-    margin: 0 auto 3.5rem;
-    font-style: italic;
-  }
-  .testimonials {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.75rem;
-  }
-  .testimonial {
-    margin: 0;
-    padding: 2rem 1.75rem;
-    background: var(--color-cream);
-    border: 1px solid var(--color-border-warm);
-    border-left: 3px solid var(--color-gold);
-    border-radius: 6px;
-    display: flex;
-    flex-direction: column;
-  }
-  .testimonial-tag {
-    font-family: var(--font-ui);
-    font-size: 0.7rem;
-    letter-spacing: 0.08em;
-    color: var(--color-slate);
-    opacity: 0.7;
-    margin-bottom: 1rem;
-    display: block;
-    font-style: italic;
-  }
-  .testimonial blockquote {
-    margin: 0 0 1.25rem;
-    padding: 0;
-    border: none;
-    flex: 1;
-  }
-  .testimonial blockquote p {
-    font-family: var(--font-body);
-    font-size: 0.98rem;
-    line-height: 1.75;
-    color: var(--color-charcoal);
-  }
-  .testimonial blockquote p em {
-    font-style: italic;
-    color: var(--color-gold);
-  }
-  .testimonial figcaption {
-    font-family: var(--font-heading-sc);
-    font-size: 0.72rem;
-    letter-spacing: 0.14em;
-    color: var(--color-slate);
-    padding-top: 1rem;
-    border-top: 1px solid var(--color-border-warm);
-    text-transform: uppercase;
-  }
+  /* Proof / testimonial / video styles removed with the section — restore when real client content lands. */
 
   /* --- PRICING --- */
   .pricing { padding: 8rem 2rem; background: var(--color-cream); }
