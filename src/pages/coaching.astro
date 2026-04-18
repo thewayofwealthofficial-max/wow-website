@@ -3,13 +3,17 @@ import Layout from '../layouts/Layout.astro';
 import { LINKS } from '../config/links';
 
 const title = "The Money Story Method — 12-Week Behavioural Coaching Programme | Way of Wealth";
-const description = "A 1:1 coaching programme for people who've tried budgets, apps, and spreadsheets — and still feel stuck. MSc Behavioral Economics | Qualified Financial Planner.";
----
-<Layout title={title} description={description}>
+const description = "A 1:1 coaching programme for men who've tried budgets, apps, and spreadsheets — and still feel stuck. MSc Behavioral Economics | Qualified Financial Planner.";
 
-<!-- HERO -->
+// Founding cohort counters — Joel updates these manually and pushes when a spot fills.
+const FOUNDING_SPOTS_REMAINING = 5;
+const FOUNDING_APPLICANTS = 0;
+---
+<Layout title={title} description={description} canonical={`${LINKS.siteUrl}/coaching`}>
+
+<!-- HERO (credential strip merged in) -->
 <section class="hero">
-  <div class="hero-credential">MSc Behavioral Economics &nbsp;|&nbsp; Qualified Financial Planner</div>
+  <div class="hero-credential">MSc Behavioral Economics &nbsp;|&nbsp; Qualified Financial Planner (UK)</div>
   <p class="hero-tag">The Money Story Method</p>
   <h1>A 12-week programme for people who've <em>tried everything else.</em></h1>
   <p class="hero-sub">1:1 behavioural coaching that goes deeper than budgets. For anyone who knows what they <em>should</em> be doing with money — and keeps hitting the same wall before they can.</p>
@@ -18,50 +22,80 @@ const description = "A 1:1 coaching programme for people who've tried budgets, a
     <a href="#programme" class="btn-ghost">See the Programme</a>
   </div>
   <div class="hero-foot">
-    <span class="founding-tag">Founding cohort pricing · First 10 clients</span>
+    <span class="founding-tag">Founding cohort · {FOUNDING_SPOTS_REMAINING} spots remaining</span>
   </div>
 </section>
 
-<!-- CREDENTIALS STRIP -->
-<section class="credstrip">
-  <div class="credstrip-inner">
-    <div class="cred-item">
-      <div class="cred-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M12 2L2 7v10l10 5 10-5V7L12 2z" />
-          <path d="M2 7l10 5 10-5" />
-          <path d="M12 12v10" />
-        </svg>
-      </div>
-      <div>
-        <div class="cred-label">MSc Behavioral Economics</div>
-        <div class="cred-sub">Postgraduate degree · UK</div>
-      </div>
+<!-- ICEBERG DIAGRAM -->
+<section class="iceberg-section">
+  <div class="iceberg-inner reveal">
+    <span class="section-tag">The Method, in One Image</span>
+    <h2>Budgets live above the waterline.<br /><em>The real work is below.</em></h2>
+
+    <div class="iceberg-figure" aria-label="Iceberg diagram — behaviour above the waterline, the story beneath it below">
+      <svg viewBox="0 0 600 460" role="img" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="ice-above" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#F5F0E8" />
+            <stop offset="100%" stop-color="#E8D5B0" />
+          </linearGradient>
+          <linearGradient id="ice-below" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#1C2A3A" />
+            <stop offset="100%" stop-color="#141F2B" />
+          </linearGradient>
+          <linearGradient id="water" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#C4A265" stop-opacity="0.55" />
+            <stop offset="100%" stop-color="#C4A265" stop-opacity="0.0" />
+          </linearGradient>
+        </defs>
+
+        <!-- Above-waterline iceberg (tip) -->
+        <polygon points="260,50 340,50 370,170 230,170" fill="url(#ice-above)" stroke="#C4A265" stroke-width="1.5" />
+
+        <!-- Waterline -->
+        <line x1="40" y1="175" x2="560" y2="175" stroke="#C4A265" stroke-width="1.5" stroke-dasharray="4 5" />
+        <rect x="40" y="175" width="520" height="8" fill="url(#water)" />
+
+        <!-- Below-waterline iceberg (mass) -->
+        <polygon points="230,175 370,175 430,380 170,380" fill="url(#ice-below)" stroke="#C4A265" stroke-width="1.2" opacity="0.95" />
+
+        <!-- Subtle highlight lines on the submerged mass -->
+        <path d="M 200 220 L 260 215" stroke="#C4A265" stroke-width="0.8" opacity="0.35" />
+        <path d="M 210 280 L 330 270" stroke="#C4A265" stroke-width="0.8" opacity="0.3" />
+        <path d="M 200 340 L 400 335" stroke="#C4A265" stroke-width="0.8" opacity="0.25" />
+
+        <!-- Labels ABOVE -->
+        <text x="40" y="70" class="ice-label ice-label-above">BEHAVIOUR</text>
+        <text x="40" y="92" class="ice-sub ice-sub-above">Budgets</text>
+        <text x="40" y="112" class="ice-sub ice-sub-above">Spreadsheets</text>
+        <text x="40" y="132" class="ice-sub ice-sub-above">Apps</text>
+        <text x="40" y="152" class="ice-sub ice-sub-above">Side hustles</text>
+
+        <text x="460" y="70" class="ice-label ice-label-above">VISIBLE</text>
+        <text x="460" y="92" class="ice-sub ice-sub-above">What you do</text>
+        <text x="460" y="112" class="ice-sub ice-sub-above">What you track</text>
+        <text x="460" y="132" class="ice-sub ice-sub-above">What you try</text>
+        <text x="460" y="152" class="ice-sub ice-sub-above">Finance books</text>
+
+        <!-- Labels BELOW -->
+        <text x="40" y="230" class="ice-label ice-label-below">THE STORY</text>
+        <text x="40" y="252" class="ice-sub ice-sub-below">The pattern repeating</text>
+        <text x="40" y="272" class="ice-sub ice-sub-below">The thing you won't look at</text>
+        <text x="40" y="292" class="ice-sub ice-sub-below">What you learned about money</text>
+        <text x="40" y="312" class="ice-sub ice-sub-below">before you could name it</text>
+
+        <text x="460" y="230" class="ice-label ice-label-below">INVISIBLE</text>
+        <text x="460" y="252" class="ice-sub ice-sub-below">Inherited beliefs</text>
+        <text x="460" y="272" class="ice-sub ice-sub-below">Fear of looking</text>
+        <text x="460" y="292" class="ice-sub ice-sub-below">Shame loops</text>
+        <text x="460" y="312" class="ice-sub ice-sub-below">Identity around money</text>
+
+        <!-- Waterline tag -->
+        <text x="300" y="168" text-anchor="middle" class="ice-waterline">the waterline</text>
+      </svg>
     </div>
-    <div class="cred-item">
-      <div class="cred-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M9 12l2 2 4-4" />
-          <circle cx="12" cy="12" r="10" />
-        </svg>
-      </div>
-      <div>
-        <div class="cred-label">Qualified Financial Planner</div>
-        <div class="cred-sub">Level 4 · UK-regulated</div>
-      </div>
-    </div>
-    <div class="cred-item">
-      <div class="cred-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M4 19h16" />
-          <path d="M6 15l4-8 4 4 4-6" />
-        </svg>
-      </div>
-      <div>
-        <div class="cred-label">Evidence-based method</div>
-        <div class="cred-sub">Klontz Money Scripts · Behavioural finance</div>
-      </div>
-    </div>
+
+    <p class="iceberg-caption">Most financial advice works above the line. The Money Story Method starts below it.</p>
   </div>
 </section>
 
@@ -71,44 +105,94 @@ const description = "A 1:1 coaching programme for people who've tried budgets, a
     <span class="section-tag">The Problem</span>
     <h2>It's not the <em>plan.</em><br />It's the wall you hit <em>before</em> the plan.</h2>
     <p>You've downloaded the budget template. You've tried Monzo, YNAB, maybe even a spreadsheet someone built for you. You've asked ChatGPT to make you a plan more than once.</p>
-    <p>None of it sticks. Not because the plans are bad. Because every plan assumes you'll sit down calmly and look at your money — and the moment you try, something in your nervous system closes the app.</p>
+    <p>None of it sticks. Not because the plans are bad. Because every plan assumes you'll sit down calmly and look at your money — and the moment you try, something in you closes the app.</p>
     <p>That's not a discipline problem. It's a pattern one — and it's more common than the finance world admits. This programme is built for that exact gap.</p>
   </div>
 </section>
 
-<!-- WHO THIS IS FOR -->
-<section class="whofor">
-  <div class="whofor-inner">
-    <div class="reveal">
-      <span class="section-tag">Who This Is For</span>
-      <h2>You might recognise yourself <em>here.</em></h2>
-      <p class="whofor-intro">If several of these land, this programme is probably right for you. None of them make you broken — they make you human, and they're the exact patterns the programme works with.</p>
+<!-- ORIGIN STORY -->
+<section class="origin">
+  <div class="origin-inner reveal">
+    <span class="section-tag">Origin</span>
+    <h2>Why I built <em>the method.</em></h2>
+    <div class="origin-body">
+      <p>I spent years in financial services at AAGSJP. I built plans that made perfect sense on paper. Then I watched client after client nod, take the plan home, and change nothing.</p>
+      <p>That's not a willpower problem. That's a story problem — and nothing in my training was set up to see it, let alone work with it.</p>
+      <p>So I went and got an MSc in Behavioural Economics. I wanted to understand, properly, why the gap between knowing and doing is so wide when it comes to money. What I learned is that the plan is almost never the issue. It's what's running underneath it — the things you learned about money before you could name them, the story you've been inside so long you stopped noticing it.</p>
+      <p>The Money Story Method is what I built to do that work underneath first. Once the story shifts, the plan finally holds.</p>
+      <p class="origin-sign">— Joel</p>
     </div>
-    <ul class="checklist reveal">
-      <li>You've tried budgets and apps and none of them have stuck for more than a few weeks</li>
-      <li>You feel dread, shame, or panic when you open your banking app — or you avoid it entirely</li>
-      <li>You've had the impulse-spend-then-guilt cycle more times than you want to count</li>
-      <li>Your income is irregular or you're self-employed, and the uncertainty is exhausting</li>
-      <li>You grew up watching money cause stress or conflict — and you've never quite shaken that feeling</li>
-      <li>You want to feel <em>safe</em> with money, not just technically good at managing it</li>
-    </ul>
   </div>
 </section>
 
-<!-- NOT FOR -->
-<section class="notfor">
-  <div class="notfor-inner reveal">
-    <span class="section-tag">Who This Is Not For</span>
-    <h2>Being honest — this isn't <em>for everyone.</em></h2>
-    <div class="notfor-grid">
-      <div class="notfor-card">
-        <p>If your main challenge is "I need to earn more", this isn't that programme. Behavioural coaching won't fix an income problem.</p>
+<!-- NAMED ARCHETYPES -->
+<section class="archetypes">
+  <div class="archetypes-inner">
+    <div class="section-head reveal">
+      <span class="section-tag">Three Patterns I See</span>
+      <h2>You probably recognise <em>one of these.</em></h2>
+      <p class="archetypes-intro">These are the surface shapes. The quiz below names the deeper script running the pattern — the thing that has to shift before anything else will.</p>
+    </div>
+
+    <div class="archetype-grid reveal">
+      <div class="archetype-card">
+        <span class="arch-num">01</span>
+        <h3>The Drifter</h3>
+        <p>Earning well. Aimless. Money moves through, nothing accumulates. Not in crisis — just not building. Years go by and the numbers look roughly the same as they did three jobs ago.</p>
+        <p class="arch-sound">Sound familiar?</p>
       </div>
-      <div class="notfor-card">
-        <p>If you want a get-rich-quick framework, hustle strategies, or "manifest abundance" language, I'm not the right coach. I'll never use that language and it won't be in the work.</p>
+      <div class="archetype-card">
+        <span class="arch-num">02</span>
+        <h3>The Over-Achiever</h3>
+        <p>Hitting every external marker. Salary up, title up, postcode up. Still feels empty when the lights go off. The number on the screen goes up; the feeling doesn't move.</p>
+        <p class="arch-sound">Sound familiar?</p>
       </div>
-      <div class="notfor-card">
-        <p>If you're looking for pure financial advice — regulated product recommendations, pension specifics — that's a different service. This programme sits upstream: the behaviour that makes advice actually land.</p>
+      <div class="archetype-card">
+        <span class="arch-num">03</span>
+        <h3>The Avoider</h3>
+        <p>Won't open the banking app. Has the income to build something real, can't bring himself to look. The longer he doesn't look, the worse the looking gets — so he doesn't.</p>
+        <p class="arch-sound">Sound familiar?</p>
+      </div>
+    </div>
+
+    <div class="archetypes-quiz reveal">
+      <p>The quiz below names the deeper script running the pattern.</p>
+      <a href={LINKS.quiz} class="btn-ghost-gold" target="_blank" rel="noopener">Take the Money Beliefs Quiz &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- WHO THIS IS FOR / NOT FOR (merged) -->
+<section class="forwho">
+  <div class="forwho-inner">
+    <div class="section-head reveal">
+      <span class="section-tag">Fit Check</span>
+      <h2>Is this <em>for you</em> — or not?</h2>
+      <p class="forwho-intro">I'd rather say no early than oversell the work. Two honest columns.</p>
+    </div>
+
+    <div class="forwho-grid">
+      <div class="forwho-col forwho-for reveal">
+        <h3>Who this <em>is</em> for</h3>
+        <p class="forwho-sub">If several of these land, the programme is probably right for you. None of them make you broken — they make you human, and they're the exact patterns the programme works with.</p>
+        <ul class="checklist">
+          <li>You've tried budgets and apps and none of them have stuck for more than a few weeks</li>
+          <li>You feel dread, avoidance, or flatness when you open your banking app — or you avoid it entirely</li>
+          <li>You've had the impulse-spend-then-regret cycle more times than you want to count</li>
+          <li>Your income is irregular or you're self-employed, and the uncertainty is exhausting</li>
+          <li>You grew up watching money cause stress or conflict — and you've never quite shaken that feeling</li>
+          <li>You want to feel <em>steady</em> with money, not just technically good at managing it</li>
+        </ul>
+      </div>
+
+      <div class="forwho-col forwho-notfor reveal">
+        <h3>Who this is <em>not</em> for</h3>
+        <p class="forwho-sub">Being honest — this isn't for everyone. If any of these are you, I'd rather point you somewhere better than take your money.</p>
+        <ul class="notlist">
+          <li>If your main challenge is "I need to earn more", this isn't that programme. Behavioural coaching won't fix an income problem.</li>
+          <li>If you want a get-rich-quick framework, hustle strategies, or "manifest abundance" language, I'm not the right coach. I'll never use that language and it won't be in the work.</li>
+          <li>If you're looking for pure financial advice — regulated product recommendations, pension specifics — that's a different service. This programme sits upstream: the behaviour that makes advice actually land.</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -293,49 +377,90 @@ const description = "A 1:1 coaching programme for people who've tried budgets, a
   </div>
 </section>
 
-<!-- PILLARS (reuse from homepage style) -->
-<section class="pillars-section" id="approach">
-  <div class="pillars-inner">
+<!-- PILLARS (shortened to 3-line strip) -->
+<section class="pillars-strip" id="approach">
+  <div class="pillars-strip-inner reveal">
     <span class="section-tag">How I Work</span>
-    <h2>Three things I lead with,<br /><em>in this order.</em></h2>
-    <div class="pillars">
-      <div class="pillar reveal">
-        <span class="pillar-num">One</span>
-        <h3><em>Safety</em> before opportunity</h3>
-        <p>Nothing works long term on top of panic. Before we talk about growth or investing, we make sure the ground feels steady.</p>
-      </div>
-      <div class="pillar reveal">
-        <span class="pillar-num">Two</span>
-        <h3><em>Empathy</em> before advice</h3>
-        <p>You don't need another person telling you what you're doing wrong. We start by understanding how you got here.</p>
-      </div>
-      <div class="pillar reveal">
-        <span class="pillar-num">Three</span>
-        <h3><em>Science</em> before opinion</h3>
-        <p>Every tool and framework is grounded in behavioural research — not hot takes, hustle culture, or whatever's trending.</p>
-      </div>
+    <div class="pillars-line">
+      <span><em>Safety</em> before opportunity</span>
+      <span class="pillars-dot" aria-hidden="true">·</span>
+      <span><em>Empathy</em> before advice</span>
+      <span class="pillars-dot" aria-hidden="true">·</span>
+      <span><em>Science</em> before opinion</span>
     </div>
   </div>
 </section>
 
-<!-- ABOUT -->
-<section class="about" id="about">
-  <div class="about-inner">
-    <div class="about-grid">
-      <div class="about-portrait reveal">
-        <img src="/images/joel-headshot.jpg" alt="Joel — MSc Behavioral Economics, Qualified Financial Planner" width="480" height="600" loading="lazy" />
-        <div class="about-portrait-credential">
-          <span>Joel</span>
-          <span class="cred-line">MSc Behavioral Economics · Qualified Financial Planner (UK)</span>
-        </div>
+<!-- AUTHORITY STACK -->
+<section class="authority">
+  <div class="authority-inner">
+    <div class="section-head reveal">
+      <span class="section-tag">Authority Stack</span>
+      <h2>Grounded in the research <em>that matters.</em></h2>
+      <p class="authority-intro">This isn't invented. The method sits on top of four bodies of peer-reviewed work, plus a postgraduate degree trained in applying them. If a tool or framework shows up in a session, it came from here — not from an Instagram carousel.</p>
+    </div>
+
+    <div class="authority-grid reveal">
+      <div class="auth-card">
+        <span class="auth-num">01</span>
+        <h3>Klontz Money Scripts</h3>
+        <p>Dr Brad Klontz's validated inventory of the four underlying money beliefs — Avoidance, Worship, Status, Vigilance. The framework sitting under the quiz and Phase 1.</p>
       </div>
-      <div class="about-copy reveal">
-        <span class="section-tag">About</span>
-        <h2>A quick note on <em>why me.</em></h2>
-        <p>I'm Joel. I built The Money Story Method because most of the financial advice I came across assumes you're already calm, organised, and confident with numbers — and most of the people I've sat across from in my career aren't. They're smart, capable humans who got stuck in a loop somewhere along the way.</p>
-        <p>I have a master's in behavioral economics and I'm a qualified financial planner in the UK. That combination matters here: one half is the science of why we do what we do with money, the other half is the practical, regulated craft of actually helping people sort it out.</p>
-        <p>I won't promise to make you rich. I won't promise a transformation in thirty days. What I can promise is 12 weeks of deep, honest, structured work — grounded in research, paced at the speed your nervous system can actually handle.</p>
+      <div class="auth-card">
+        <span class="auth-num">02</span>
+        <h3>Kahneman &amp; Tversky</h3>
+        <p>Prospect theory. Loss aversion. The asymmetry between the pain of losing and the pleasure of gaining. The reason most financial decisions aren't made the way economists assume.</p>
       </div>
+      <div class="auth-card">
+        <span class="auth-num">03</span>
+        <h3>Richard Thaler</h3>
+        <p>Behavioural finance. Mental accounting, the endowment effect, nudge architecture. Why the structure around a decision matters as much as the decision.</p>
+      </div>
+      <div class="auth-card">
+        <span class="auth-num">04</span>
+        <h3>Charles Duhigg</h3>
+        <p>Habit loop research — cue, routine, reward. The reason willpower fails and the reason behavioural guardrails work. The spine of Phase 4.</p>
+      </div>
+    </div>
+
+    <p class="authority-note reveal">MSc Behavioural Economics (UK) — trained specifically in applying these frameworks to real financial behaviour. Not a certification anyone can buy in a weekend.</p>
+  </div>
+</section>
+
+<!-- PROOF / SOCIAL PROOF (placeholder while pre-launch) -->
+<section class="proof">
+  <div class="proof-inner">
+    <div class="section-head reveal">
+      <span class="section-tag">Founding Cohort</span>
+      <h2>Early work, <em>early clients.</em></h2>
+      <p class="proof-cohort-line">Founding cohort · {FOUNDING_SPOTS_REMAINING} spots remaining · <span class="proof-applicants">[placeholder: {FOUNDING_APPLICANTS} applicants on the list]</span></p>
+      <p class="proof-intro">The testimonials below are placeholders — marked clearly. They're here so the page reads the way it will once real founding-cohort work is finished. Real, named quotes will replace them as clients graduate.</p>
+    </div>
+
+    <div class="testimonials reveal">
+      <figure class="testimonial">
+        <span class="testimonial-tag">[ placeholder — not a real client ]</span>
+        <blockquote>
+          <p>I'd been drifting for about six years. Good income, nothing to show for it, vaguely embarrassed about it whenever anyone asked. The work in Phase 1 cracked open something I hadn't looked at since I was about fourteen. By the end I had an actual direction — not a budget, a <em>direction</em>. Money started accumulating once I knew what I was accumulating it for.</p>
+        </blockquote>
+        <figcaption>James, 31 · London · The Drifter</figcaption>
+      </figure>
+
+      <figure class="testimonial">
+        <span class="testimonial-tag">[ placeholder — not a real client ]</span>
+        <blockquote>
+          <p>I came in wanting "a plan". I left realising I'd been using plans to avoid a conversation with myself. The goalposts I'd been chasing weren't mine — they were inherited, and hitting them never changed the feeling in my chest. Joel didn't try to talk me out of ambition. He helped me aim it somewhere I actually wanted to be.</p>
+        </blockquote>
+        <figcaption>Rhys, 34 · Manchester · The Over-Achiever</figcaption>
+      </figure>
+
+      <figure class="testimonial">
+        <span class="testimonial-tag">[ placeholder — not a real client ]</span>
+        <blockquote>
+          <p>I hadn't opened my main banking app properly in about two years. The idea of looking made me feel ill. What worked wasn't being pushed to look — it was understanding <em>why</em> I couldn't, and going slower than any other finance thing I'd ever tried. By Week 6 I was opening the app without a knot in my stomach. That alone was worth the programme.</p>
+        </blockquote>
+        <figcaption>Daniel, 29 · Bristol · The Avoider</figcaption>
+      </figure>
     </div>
   </div>
 </section>
@@ -740,56 +865,70 @@ const description = "A 1:1 coaching programme for people who've tried budgets, a
     font-family: var(--font-heading-sc);
     font-size: 0.72rem;
     letter-spacing: 0.18em;
-    color: rgba(196, 162, 101, 0.8);
+    color: rgba(196, 162, 101, 0.85);
     padding: 0.5rem 1.1rem;
     border: 1px solid rgba(196, 162, 101, 0.35);
     border-radius: 4px;
   }
 
-  /* --- CREDENTIALS STRIP --- */
-  .credstrip {
-    padding: 2.5rem 2rem;
-    background: var(--color-navy-deep);
-    border-bottom: 1px solid rgba(196, 162, 101, 0.2);
+  /* --- ICEBERG --- */
+  .iceberg-section {
+    padding: 6rem 2rem 7rem;
+    background: var(--color-bg-white);
+    text-align: center;
   }
-  .credstrip-inner {
-    max-width: 1100px;
+  .iceberg-inner {
+    max-width: 900px;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    align-items: center;
   }
-  .cred-item {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 0.5rem 0;
-  }
-  .cred-icon {
-    flex-shrink: 0;
-    width: 44px;
-    height: 44px;
-    border-radius: 6px;
-    background: rgba(196, 162, 101, 0.12);
-    border: 1px solid rgba(196, 162, 101, 0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-gold);
-  }
-  .cred-label {
+  .iceberg-section h2 {
     font-family: var(--font-heading);
-    font-size: 1rem;
-    color: var(--color-cream);
-    line-height: 1.3;
+    font-size: clamp(1.9rem, 3.5vw, 2.6rem);
+    font-weight: 400;
+    line-height: 1.25;
+    color: var(--color-charcoal);
+    margin-bottom: 3rem;
   }
-  .cred-sub {
-    font-family: var(--font-heading-sc);
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
-    color: rgba(245, 240, 232, 0.5);
-    margin-top: 0.2rem;
+  .iceberg-section h2 em { font-style: italic; color: var(--color-gold); font-weight: 400; }
+  .iceberg-figure {
+    max-width: 720px;
+    margin: 0 auto 2rem;
+  }
+  .iceberg-figure svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  :global(.ice-label) {
+    font-family: 'Playfair Display SC', Georgia, serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    fill: var(--color-gold);
+  }
+  :global(.ice-sub) {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 12px;
+    font-style: italic;
+  }
+  :global(.ice-label-above) { fill: #1C2A3A; opacity: 0.75; }
+  :global(.ice-sub-above) { fill: #1C2A3A; opacity: 0.7; }
+  :global(.ice-label-below) { fill: #C4A265; }
+  :global(.ice-sub-below) { fill: rgba(245, 240, 232, 0.9); }
+  :global(.ice-waterline) {
+    font-family: 'Playfair Display SC', Georgia, serif;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    fill: var(--color-gold);
+    opacity: 0.85;
+  }
+  .iceberg-caption {
+    font-family: var(--font-body);
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--color-slate);
+    line-height: 1.7;
+    max-width: 560px;
+    margin: 0 auto;
   }
 
   /* --- PROBLEM --- */
@@ -812,31 +951,192 @@ const description = "A 1:1 coaching programme for people who've tried budgets, a
   }
   .problem p:last-child { margin-bottom: 0; }
 
-  /* --- WHO FOR --- */
-  .whofor { padding: 7rem 2rem; background: var(--color-bg-white); }
-  .whofor-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    gap: 5rem;
-    align-items: start;
+  /* --- ORIGIN STORY --- */
+  .origin {
+    padding: 7rem 2rem;
+    background: var(--color-bg-white);
   }
-  .whofor h2 {
+  .origin-inner {
+    max-width: 780px;
+    margin: 0 auto;
+  }
+  .origin h2 {
     font-family: var(--font-heading);
-    font-size: clamp(1.9rem, 3.2vw, 2.6rem);
+    font-size: clamp(2rem, 3.5vw, 2.6rem);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--color-charcoal);
+    margin-bottom: 2.5rem;
+  }
+  .origin h2 em { font-style: italic; color: var(--color-gold); font-weight: 400; }
+  .origin-body p {
+    font-size: 1.06rem;
+    color: var(--color-charcoal);
+    line-height: 1.9;
+    margin-bottom: 1.35rem;
+  }
+  .origin-sign {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 1.15rem !important;
+    color: var(--color-gold);
+    margin-top: 2rem !important;
+  }
+
+  /* --- ARCHETYPES --- */
+  .archetypes {
+    padding: 7rem 2rem;
+    background: var(--color-bg-cool);
+  }
+  .archetypes-inner { max-width: 1100px; margin: 0 auto; }
+  .archetypes h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(1.9rem, 3.5vw, 2.6rem);
     font-weight: 400;
     line-height: 1.2;
     color: var(--color-charcoal);
     margin-bottom: 1.5rem;
   }
-  .whofor h2 em { font-style: italic; color: var(--color-gold); font-weight: 400; }
-  .whofor-intro { color: var(--color-slate); font-size: 1.02rem; line-height: 1.8; }
+  .archetypes h2 em { font-style: italic; color: var(--color-gold); font-weight: 400; }
+  .archetypes-intro {
+    color: var(--color-slate);
+    font-size: 1.04rem;
+    line-height: 1.8;
+    max-width: 680px;
+    margin: 0 auto 3.5rem;
+  }
+  .archetype-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+  }
+  .archetype-card {
+    background: var(--color-bg-white);
+    border: 1px solid var(--color-border-warm);
+    border-top: 3px solid var(--color-gold);
+    border-radius: 6px;
+    padding: 2.25rem 1.75rem 2rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .arch-num {
+    font-family: var(--font-heading-sc);
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    color: var(--color-gold);
+    margin-bottom: 0.8rem;
+    display: block;
+  }
+  .archetype-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.55rem;
+    font-weight: 400;
+    color: var(--color-charcoal);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+  .archetype-card p {
+    font-size: 0.98rem;
+    color: var(--color-charcoal);
+    line-height: 1.75;
+    margin-bottom: 1rem;
+  }
+  .arch-sound {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 1rem !important;
+    color: var(--color-gold);
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-border-warm);
+  }
+  .archetypes-quiz {
+    margin-top: 3rem;
+    text-align: center;
+  }
+  .archetypes-quiz p {
+    font-family: var(--font-body);
+    font-style: italic;
+    color: var(--color-slate);
+    font-size: 1rem;
+    margin-bottom: 1.25rem;
+  }
+  .btn-ghost-gold {
+    display: inline-block;
+    padding: 0.9rem 1.75rem;
+    background: transparent;
+    color: var(--color-gold);
+    border: 1px solid var(--color-gold);
+    border-radius: 6px;
+    font-family: var(--font-ui);
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+  .btn-ghost-gold:hover {
+    background: var(--color-gold);
+    color: var(--color-navy);
+  }
+
+  /* --- FOR / NOT FOR (merged) --- */
+  .forwho { padding: 7rem 2rem; background: var(--color-bg-white); }
+  .forwho-inner { max-width: 1100px; margin: 0 auto; }
+  .forwho h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(1.9rem, 3.5vw, 2.6rem);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--color-charcoal);
+    margin-bottom: 1.5rem;
+  }
+  .forwho h2 em { font-style: italic; color: var(--color-gold); font-weight: 400; }
+  .forwho-intro {
+    color: var(--color-slate);
+    font-size: 1.04rem;
+    line-height: 1.8;
+    max-width: 680px;
+    margin: 0 auto 3.5rem;
+    text-align: center;
+  }
+  .forwho-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+  .forwho-col {
+    padding: 2.5rem;
+    border-radius: 8px;
+  }
+  .forwho-for {
+    background: var(--color-cream);
+    border-left: 3px solid var(--color-gold);
+  }
+  .forwho-notfor {
+    background: var(--color-bg-cool);
+    border-left: 3px solid var(--color-slate);
+  }
+  .forwho-col h3 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--color-charcoal);
+    margin-bottom: 0.85rem;
+    line-height: 1.3;
+  }
+  .forwho-col h3 em { font-style: italic; color: var(--color-gold); font-weight: 400; }
+  .forwho-sub {
+    color: var(--color-slate);
+    font-size: 0.98rem;
+    line-height: 1.75;
+    margin-bottom: 1.5rem;
+  }
   .checklist { list-style: none; padding: 0; }
   .checklist li {
-    padding: 1.1rem 0 1.1rem 2rem;
+    padding: 1rem 0 1rem 2rem;
     border-bottom: 1px solid var(--color-border-warm);
-    font-size: 1.02rem;
+    font-size: 1rem;
     color: var(--color-charcoal);
     position: relative;
     line-height: 1.6;
@@ -845,37 +1145,24 @@ const description = "A 1:1 coaching programme for people who've tried budgets, a
   .checklist li:last-child { border-bottom: none; }
   .checklist li::before {
     content: '—';
-    position: absolute; left: 0; top: 1.1rem;
+    position: absolute; left: 0; top: 1rem;
     color: var(--color-gold); font-weight: 500;
   }
-
-  /* --- NOT FOR --- */
-  .notfor { padding: 6rem 2rem; background: var(--color-bg-cool); }
-  .notfor-inner { max-width: 1100px; margin: 0 auto; text-align: center; }
-  .notfor h2 {
-    font-family: var(--font-heading);
-    font-size: clamp(1.8rem, 3vw, 2.4rem);
-    font-weight: 400; line-height: 1.25;
-    color: var(--color-charcoal);
-    margin-bottom: 3rem;
-  }
-  .notfor h2 em { font-style: italic; color: var(--color-gold); }
-  .notfor-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.75rem;
-    text-align: left;
-  }
-  .notfor-card {
-    padding: 1.75rem;
-    background: var(--color-bg-white);
-    border-left: 2px solid var(--color-slate);
-    border-radius: 4px;
-  }
-  .notfor-card p {
+  .notlist { list-style: none; padding: 0; }
+  .notlist li {
+    padding: 1rem 0 1rem 1.6rem;
+    border-bottom: 1px solid rgba(107, 123, 141, 0.25);
     font-size: 0.98rem;
     color: var(--color-slate);
+    position: relative;
     line-height: 1.7;
+  }
+  .notlist li:last-child { border-bottom: none; }
+  .notlist li::before {
+    content: '×';
+    position: absolute; left: 0; top: 0.95rem;
+    color: var(--color-slate);
+    font-weight: 500;
   }
 
   /* --- PROGRAMME --- */
@@ -1136,122 +1423,199 @@ const description = "A 1:1 coaching programme for people who've tried budgets, a
     text-align: center;
   }
 
-  /* --- PILLARS --- */
-  .pillars-section { padding: 7rem 2rem; background: var(--color-navy); color: var(--color-cream); position: relative; }
-  .pillars-section::before {
+  /* --- PILLARS STRIP (shortened) --- */
+  .pillars-strip {
+    padding: 3.5rem 2rem;
+    background: var(--color-navy);
+    color: var(--color-cream);
+    text-align: center;
+    position: relative;
+  }
+  .pillars-strip::before {
     content: ''; position: absolute; top: 0; left: 50%;
     transform: translateX(-50%);
     width: 80px; height: 2px; background: var(--color-gold);
   }
-  .pillars-inner { max-width: 900px; margin: 0 auto; text-align: center; }
-  .pillars-section .section-tag { color: var(--color-gold); }
-  .pillars-section h2 {
+  .pillars-strip-inner { max-width: 1000px; margin: 0 auto; }
+  .pillars-strip .section-tag { color: var(--color-gold); margin-bottom: 1.25rem; }
+  .pillars-line {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: baseline;
+    gap: 1.25rem;
     font-family: var(--font-heading);
-    font-size: clamp(2rem, 3.8vw, 3rem);
-    font-weight: 400; line-height: 1.2;
-    color: var(--color-cream); margin-bottom: 3rem;
-  }
-  .pillars-section h2 em { font-style: italic; color: var(--color-gold); }
-  .pillars {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2.5rem; margin-top: 3rem;
-  }
-  .pillar {
-    text-align: left;
-    padding: 2rem 0 0;
-    border-top: 2px solid var(--color-gold);
-  }
-  .pillar-num {
-    font-family: var(--font-heading-sc);
-    font-size: 0.72rem;
-    letter-spacing: 0.15em;
-    color: var(--color-gold);
-    margin-bottom: 0.85rem; display: block;
-  }
-  .pillar h3 {
-    font-family: var(--font-heading);
-    font-size: 1.4rem; font-weight: 400;
+    font-size: clamp(1.2rem, 2vw, 1.6rem);
     color: var(--color-cream);
-    margin-bottom: 0.85rem; line-height: 1.3;
+    line-height: 1.5;
   }
-  .pillar h3 em { font-style: italic; color: var(--color-gold); }
-  .pillar p {
-    font-size: 0.98rem;
-    color: rgba(245, 240, 232, 0.78);
-    line-height: 1.75;
+  .pillars-line em {
+    font-style: italic;
+    color: var(--color-gold);
+  }
+  .pillars-dot {
+    color: var(--color-gold);
+    opacity: 0.6;
+    font-size: 1.4rem;
   }
 
-  /* --- ABOUT --- */
-  .about { padding: 7rem 2rem; background: var(--color-bg-white); }
-  .about-inner { max-width: 1100px; margin: 0 auto; }
-  .about-grid {
-    display: grid;
-    grid-template-columns: 0.8fr 1fr;
-    gap: 4rem;
-    align-items: center;
-  }
-  .about-portrait {
-    position: relative;
-  }
-  .about-portrait img {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 4 / 5;
-    object-fit: cover;
-    object-position: center 15%;
-    border-radius: 8px;
-    box-shadow:
-      0 1px 3px rgba(28, 42, 58, 0.08),
-      0 20px 40px rgba(28, 42, 58, 0.12);
-    display: block;
-  }
-  .about-portrait::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 8px;
-    border: 1px solid rgba(196, 162, 101, 0.3);
-    pointer-events: none;
-    transform: translate(14px, 14px);
-    z-index: -1;
-    background: linear-gradient(135deg, rgba(196, 162, 101, 0.08), transparent);
-  }
-  .about-portrait-credential {
-    margin-top: 1.5rem;
-    padding: 1rem 1.25rem;
+  /* --- AUTHORITY STACK --- */
+  .authority {
+    padding: 7rem 2rem;
     background: var(--color-cream);
-    border-left: 3px solid var(--color-gold);
-    border-radius: 0 4px 4px 0;
   }
-  .about-portrait-credential span {
-    display: block;
+  .authority-inner { max-width: 1100px; margin: 0 auto; }
+  .authority h2 {
     font-family: var(--font-heading);
-    font-size: 1.1rem;
+    font-size: clamp(2rem, 3.8vw, 2.8rem);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--color-charcoal);
+    margin-bottom: 1.5rem;
+  }
+  .authority h2 em { font-style: italic; color: var(--color-gold); font-weight: 400; }
+  .authority-intro {
+    color: var(--color-slate);
+    font-size: 1.04rem;
+    line-height: 1.8;
+    max-width: 720px;
+    margin: 0 auto 3.5rem;
+  }
+  .authority-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+  .auth-card {
+    padding: 1.75rem 1.5rem;
+    background: var(--color-bg-white);
+    border: 1px solid var(--color-border-warm);
+    border-top: 2px solid var(--color-gold);
+    border-radius: 6px;
+  }
+  .auth-num {
+    font-family: var(--font-heading-sc);
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    color: var(--color-gold);
+    display: block;
+    margin-bottom: 0.7rem;
+  }
+  .auth-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--color-charcoal);
+    margin-bottom: 0.75rem;
+    line-height: 1.25;
+  }
+  .auth-card p {
+    font-size: 0.93rem;
+    color: var(--color-slate);
+    line-height: 1.65;
+  }
+  .authority-note {
+    margin-top: 2.75rem;
+    text-align: center;
+    font-family: var(--font-body);
+    font-style: italic;
+    font-size: 0.98rem;
+    color: var(--color-slate);
+    max-width: 680px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1.25rem 1.5rem;
+    border-top: 1px solid var(--color-border-warm);
+    border-bottom: 1px solid var(--color-border-warm);
+  }
+
+  /* --- PROOF / TESTIMONIALS --- */
+  .proof {
+    padding: 7rem 2rem;
+    background: var(--color-bg-white);
+  }
+  .proof-inner { max-width: 1100px; margin: 0 auto; }
+  .proof h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(1.9rem, 3.5vw, 2.6rem);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--color-charcoal);
+    margin-bottom: 1.25rem;
+  }
+  .proof h2 em { font-style: italic; color: var(--color-gold); font-weight: 400; }
+  .proof-cohort-line {
+    font-family: var(--font-heading-sc);
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    color: var(--color-slate);
+    margin-bottom: 1.75rem;
+    text-transform: uppercase;
+  }
+  .proof-applicants {
+    color: var(--color-gold);
+    font-style: italic;
+    letter-spacing: 0.1em;
+    text-transform: none;
+  }
+  .proof-intro {
+    color: var(--color-slate);
+    font-size: 0.98rem;
+    line-height: 1.8;
+    max-width: 680px;
+    margin: 0 auto 3.5rem;
+    font-style: italic;
+  }
+  .testimonials {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+  }
+  .testimonial {
+    margin: 0;
+    padding: 2rem 1.75rem;
+    background: var(--color-cream);
+    border: 1px solid var(--color-border-warm);
+    border-left: 3px solid var(--color-gold);
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+  }
+  .testimonial-tag {
+    font-family: var(--font-ui);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    color: var(--color-slate);
+    opacity: 0.7;
+    margin-bottom: 1rem;
+    display: block;
+    font-style: italic;
+  }
+  .testimonial blockquote {
+    margin: 0 0 1.25rem;
+    padding: 0;
+    border: none;
+    flex: 1;
+  }
+  .testimonial blockquote p {
+    font-family: var(--font-body);
+    font-size: 0.98rem;
+    line-height: 1.75;
     color: var(--color-charcoal);
   }
-  .about-portrait-credential .cred-line {
+  .testimonial blockquote p em {
+    font-style: italic;
+    color: var(--color-gold);
+  }
+  .testimonial figcaption {
     font-family: var(--font-heading-sc);
     font-size: 0.72rem;
     letter-spacing: 0.14em;
     color: var(--color-slate);
-    margin-top: 0.25rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-border-warm);
+    text-transform: uppercase;
   }
-  .about-copy { align-self: center; }
-  .about h2 {
-    font-family: var(--font-heading);
-    font-size: clamp(2rem, 3.5vw, 2.8rem);
-    font-weight: 400; line-height: 1.2;
-    color: var(--color-charcoal);
-    margin-bottom: 2rem;
-    margin-top: 0.5rem;
-  }
-  .about h2 em { font-style: italic; color: var(--color-gold); font-weight: 400; }
-  .about p {
-    font-size: 1.04rem; color: var(--color-charcoal);
-    line-height: 1.85; margin-bottom: 1.2rem;
-  }
-  .about p:last-of-type { margin-bottom: 0; }
 
   /* --- PRICING --- */
   .pricing { padding: 8rem 2rem; background: var(--color-cream); }
@@ -1756,29 +2120,34 @@ const description = "A 1:1 coaching programme for people who've tried budgets, a
 
   /* --- RESPONSIVE --- */
   @media (max-width: 1024px) {
-    .whofor-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .archetype-grid { grid-template-columns: 1fr; }
+    .forwho-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .authority-grid { grid-template-columns: repeat(2, 1fr); }
+    .testimonials { grid-template-columns: 1fr; }
     .inclusions { grid-template-columns: 1fr; }
-    .pillars { grid-template-columns: 1fr; gap: 2rem; }
     .plans { grid-template-columns: 1fr; }
     .plan-featured { transform: none; }
-    .notfor-grid { grid-template-columns: 1fr; }
-    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
-    .about-portrait { max-width: 380px; margin: 0 auto; }
-    .credstrip-inner { grid-template-columns: 1fr; gap: 1rem; max-width: 420px; }
   }
   @media (max-width: 768px) {
     .hero { padding: 8rem 1.5rem 4rem; }
-    .problem, .whofor, .notfor, .programme, .whatyouget,
-    .portal-preview, .pillars-section, .about, .pricing,
-    .faq, .apply-section {
+    .iceberg-section, .problem, .origin, .archetypes, .forwho,
+    .programme, .whatyouget, .portal-preview, .authority, .proof,
+    .pricing, .faq, .apply-section {
       padding: 5rem 1.25rem;
     }
+    .pillars-strip { padding: 2.5rem 1.25rem; }
+    .pillars-line { font-size: 1.05rem; gap: 0.75rem; }
     .apply-form { padding: 1.75rem; }
     .hero-actions { flex-direction: column; width: 100%; max-width: 320px; }
     .hero-actions :global(.btn-primary),
     .hero-actions :global(.btn-ghost) { width: 100%; text-align: center; }
     .phase { padding: 1.75rem; }
     .phase h3 { font-size: 1.6rem; }
+    .forwho-col { padding: 1.75rem; }
+    .authority-grid { grid-template-columns: 1fr; }
+    /* Iceberg labels get smaller on mobile */
+    :global(.ice-label) { font-size: 9px; }
+    :global(.ice-sub) { font-size: 10px; }
     /* Price anchor stacks on mobile */
     .price-anchor {
       flex-direction: column;
